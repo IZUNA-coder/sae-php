@@ -1,0 +1,34 @@
+ROLE : idRole, nomRole
+:
+:
+:
+:
+:
+
+ETRE, 11 ROLE, ON UTILISATEUR
+:
+PRODUIRE, 11 ALBUM, 0N ARTISTE
+ARTISTE: idartiste, pseudoArtiste, nomArtiste,prenomArtiste
+CHANTER, 0N CHANSON, 1N ARTISTE
+:
+
+UTILISATEUR : idutilisateur, pseudoUtilisateur, nomUtilisateur, prenomUtilisateur, emailUtilisateur, mdpUtilisateur, idRole
+NOTER, ON ALBUM, ON UTILISATEUR : note
+ALBUM: idalbum, nomAlbum, anneeAlbum, imageAlbum
+CONTENIR_ALBUM, 1N ALBUM, 0N CHANSON
+CHANSON: idchanson, nomChanson, dureeChanson
+CONTENIR, ON PLAYLIST, ON CHANSON
+
+:
+APPARTENIR_ALBUM, 1N ALBUM, 0N GENRE
+GENRE : idGenre, nomGenre
+APPARTENIR, 0N CHANSON, 1N GENRE
+PRODUIRE_PROD, 1N CHANSON, 0N PRODUCTEUR
+PLAYLIST : idPlaylist, nomPlaylist, idUtilisateur
+
+:
+:
+:
+:
+PRODUCTEUR: idproducteur, nomProducteur, prenomProducteur
+:
