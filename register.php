@@ -1,7 +1,7 @@
 <?php
 
-$file_db = require_once('sound.sqlite3');
-session_start();
+$file_db = new PDO('sqlite:sound.sqlite3');
+print_r($file_db);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo = $_POST['pseudo'];
@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $mdp = $_POST['mdp'];
-    $id_role = $_POST['id_role'];
+    $id_role = 2;
 
     $verifUser = $file_db -> prepare("SELECT COUNT(*) FROM UTILISATEUR WHERE pseudo = :pseudo");
     $verifUser -> bindParam(':pseudo', $pseudo);
@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de Compte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -54,35 +55,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ?>
 
     <form action="register.php" method="post">
-        <label for="Pseudo">Pseudo:</label>
-        <input type="text" id="Pseudo" name="Pseudo" required>
+        <label for="pseudo">Pseudo:</label>
+        <input type="text" id="pseudo" name="pseudo" required>
 
 
-        <label for="Nom">Nom:</label>
-        <input type="text" id="Nom" name="Nom" required>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required>
         
 
-        <label for="Prenom">Prenom:</label>
-        <input type="text" id="Prenom" name="Prenom" required>
+        <label for="prenom">Prenom:</label>
+        <input type="text" id="prenom" name="prenom" required>
 
-        <label for="Email">Email:</label>
-        <input type="text" id="Email" name="Email" required>
-
-        <label for="mdp">mdp:</label>
-        <input type="mdp" id="mdp" name="mdp" required>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
 
         <label for="mdp">mdp:</label>
         <input type="mdp" id="mdp" name="mdp" required>
 
-       <?php 
-        $query = $db->query('SELECT * FROM roles');
-
-        echo '<select name="id_role" id="id_role">';
-        while ($role = $query->fetch()) {
-            echo '<option value="'.$role['id'].'">'.$role['name'].'</option>';
-        }     
-        echo '</select>';
-        ?>
       
 
         <input type="submit" value="Créer un Compte">

@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$file_db = new PDO('sqlite:sound.sqlite3');
+
 if (isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
@@ -11,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     $_SESSION['username'] = $username;
+    
     $checkIfExists = $file_db->prepare("SELECT COUNT(*) FROM UTILISATEUR WHERE pseudo = :username AND mdp = :mdp");
     $checkIfExists->bindParam(':username', $username);
     $checkIfExists->bindParam(':mdp', $password);

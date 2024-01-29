@@ -121,9 +121,14 @@ try{
             id_role INTEGER,
             FOREIGN KEY (id_role) REFERENCES ROLE (id_role)
         )");
+        
+        $db->exec("INSERT INTO ROLE (id_role, nom_role) VALUES (1, 'admin')");
+    $db->exec("INSERT INTO ROLE (id_role, nom_role) VALUES (2, 'utilisateur')");
 
 }}
 
 catch(PDOException $e){
     echo $e->getMessage().PHP_EOL;
+    exit;
 }
+?>
