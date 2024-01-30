@@ -25,15 +25,15 @@ if (isset($_GET['idalbum'])) {
         $id_playlist = $result['id_playlist'];
         print_r($id_playlist);
     } 
-    while ($chanson = $contientAlbum->fetch(PDO::FETCH_ASSOC)) {
-        $id_chanson = $chanson['idchanson'];
+    while ($ch = $contientAlbum->fetch(PDO::FETCH_ASSOC)) {
+        $id_chanson = $ch['idchanson'];
     
-        $query2 = $file_db->query("SELECT * FROM CHANSON WHERE idchanson = $id_chanson");
+        $chansons = $file_db->query("SELECT * FROM CHANSON WHERE idchanson = $id_chanson");
         print_r($_SESSION);
-        while ($row2 = $query2->fetch(PDO::FETCH_ASSOC)) {
-            if ($row2['idchanson'] == $id_chanson) {
-                echo "<h2>".$row2['nom_chanson']."</h2>";
-                echo "<h3>".$row2['duree_chanson']."</h3>";
+        while ($chanson = $chansons->fetch(PDO::FETCH_ASSOC)) {
+            if ($chanson['idchanson'] == $id_chanson) {
+                echo "<h2>".$chanson['nom_chanson']."</h2>";
+                echo "<h3>".$chanson['duree_chanson']."</h3>";
             }
         }
 
