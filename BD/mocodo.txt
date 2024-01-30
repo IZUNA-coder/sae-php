@@ -1,34 +1,34 @@
-ROLE : idRole, nomRole
 :
-:
+ROLE : id_role, nom_role
+DF, ON ROLE, 11 UTILISATEUR
 :
 :
 :
 
-ETRE, 11 ROLE, ON UTILISATEUR
 :
-PRODUIRE, 11 ALBUM, 0N ARTISTE
-ARTISTE: idartiste, pseudoArtiste, nomArtiste,prenomArtiste
-CHANTER, 0N CHANSON, 1N ARTISTE
+:
+UTILISATEUR : idutilisateur, pseudo_utilisateur, nom_utilisateur, prenom_utilisateur, email_utilisateur, mdp_utilisateur
+DF, 11 UTILISATEUR, 0N PLAYLIST
+PLAYLIST : id_playlist, nom_playlist
 :
 
-UTILISATEUR : idutilisateur, pseudoUtilisateur, nomUtilisateur, prenomUtilisateur, emailUtilisateur, mdpUtilisateur, idRole
+:
+:
 NOTER, ON ALBUM, ON UTILISATEUR : note
-ALBUM: idalbum, nomAlbum, anneeAlbum, imageAlbum
-CONTENIR_ALBUM, 1N ALBUM, 0N CHANSON
-CHANSON: idchanson, nomChanson, dureeChanson
+:
 CONTENIR, ON PLAYLIST, ON CHANSON
-
 :
+
+GENRE : id_genre, nom_genre
 APPARTENIR_ALBUM, 1N ALBUM, 0N GENRE
-GENRE : idGenre, nomGenre
-APPARTENIR, 0N CHANSON, 1N GENRE
+ALBUM: idalbum, nom_album, annee_album, image_album
+CONTENIR_ALBUM, 1N ALBUM, 0N CHANSON
+CHANSON: idchanson, nom_chanson, duree_chanson
 PRODUIRE_PROD, 1N CHANSON, 0N PRODUCTEUR
-PLAYLIST : idPlaylist, nomPlaylist, idUtilisateur
 
 :
 :
-:
-:
-PRODUCTEUR: idproducteur, nomProducteur, prenomProducteur
-:
+DF, 11 ALBUM, 0N ARTISTE
+ARTISTE: idartiste, pseudo_artiste, nom_artiste,prenom_artiste
+CHANTER, 0N CHANSON, 1N ARTISTE
+PRODUCTEUR: idproducteur, nom_producteur, prenom_producteur
