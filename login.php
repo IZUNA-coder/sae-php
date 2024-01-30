@@ -1,6 +1,23 @@
 <?php
 session_start();
 
+function get_id_user($username, $password) {
+    global $file_db;
+
+    $query = $file_db->prepare("SELECT idutilisateur FROM UTILISATEUR WHERE pseudo = :username AND mdp = :mdp");
+    $query->bindParam(':username', $username);
+    $query->bindParam(':mdp', $password);
+    $query->execute();
+
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        return $result['idutilisateur'];
+    } else {
+        return null;
+    }
+}
+
 $file_db = new PDO('sqlite:sound.sqlite3');
 
 if (isset($_SESSION['user_id'])) {
@@ -14,12 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $_SESSION['username'] = $username;
     
+    
     $checkIfExists = $file_db->prepare("SELECT COUNT(*) FROM UTILISATEUR WHERE pseudo = :username AND mdp = :mdp");
     $checkIfExists->bindParam(':username', $username);
     $checkIfExists->bindParam(':mdp', $password);
     $checkIfExists->execute();
-
+    
     if ($checkIfExists->fetchColumn() > 0) {
+        $user_id = get_id_user($username, $password);
+        $_SESSION['user_id'] = $user_id;
         header("Location: index.php");
         exit();
     } else {

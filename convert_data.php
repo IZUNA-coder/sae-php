@@ -61,7 +61,6 @@ try{
         $db->exec("CREATE TABLE IF NOT EXISTS CONTENIR (
             id_playlist INTEGER NOT NULL,
             idchanson INTEGER NOT NULL,
-            PRIMARY KEY (id_playlist, idchanson)
             FOREIGN KEY (idchanson) REFERENCES CHANSON (idchanson),
             FOREIGN KEY (id_playlist) REFERENCES PLAYLIST (id_playlist)
         )");
@@ -86,10 +85,10 @@ try{
         )");
 
         $db->exec("CREATE TABLE IF NOT EXISTS PLAYLIST (
-            idplaylist INTEGER NOT NULL,
+            id_playlist INTEGER NOT NULL,
             nomplaylist TEXT,
             idutilisateur NOT NULL,
-            PRIMARY KEY (idplaylist, idutilisateur)
+            PRIMARY KEY (id_playlist, idutilisateur)
             FOREIGN KEY (idutilisateur) REFERENCES UTILISATEUR (idutilisateur)
         )");
 
@@ -121,9 +120,53 @@ try{
             id_role INTEGER,
             FOREIGN KEY (id_role) REFERENCES ROLE (id_role)
         )");
-        
+
         $db->exec("INSERT INTO ROLE (id_role, nom_role) VALUES (1, 'admin')");
     $db->exec("INSERT INTO ROLE (id_role, nom_role) VALUES (2, 'utilisateur')");
+
+
+         // Insert into UTILISATEUR table
+    $db->exec("INSERT INTO UTILISATEUR (pseudo, nom, prenom, email, mdp, id_role) VALUES
+    ('JM', 'JM', 'JM', 'JM@gmail.com', 'JM', 2),
+    ('admin', 'admin', 'Super', 'admin@gmail.com', 'admin', 1)");
+
+
+     // Insert into ARTISTE table
+     $db->exec("INSERT INTO ARTISTE (pseudo_artiste, nom_artiste, prenom_artiste) VALUES
+     ('john_doe', 'Doe', 'John'),
+     ('jane_smith', 'Smith', 'Jane')");
+
+// Insert into ALBUM table
+$db->exec("INSERT INTO ALBUM (nom_album, annee_album, image_album, idartiste) VALUES
+     ('Album1', '2022', './fixtures/images/Terry_Allen_Pedal_Steal.jpg', 1),
+     ('Album2', '2023', './fixtures/images/Terry_Allen_Pedal_Steal.jpg', 2)");
+
+// Insert into GENRE table
+$db->exec("INSERT INTO GENRE (nomgenre) VALUES
+     ('Pop'),
+     ('Rock')");
+
+// Insert into CHANSON table
+$db->exec("INSERT INTO CHANSON (nom_chanson, duree_chanson) VALUES
+     ('Song1', '00:04:30'),
+     ('Song2', '00:03:45')");
+
+// Insert into CHANTER table
+$db->exec("INSERT INTO CHANTER (idchanson, idartiste) VALUES
+     (1, 1),
+     (2, 2)");
+
+// Insert into CONTENIR_ALBUM table
+$db->exec("INSERT INTO CONTENIR_ALBUM (idalbum, idchanson) VALUES
+     (1, 1),
+     (1, 2),
+     (2, 2)");
+
+// Insert into PLAYLIST table
+$db->exec("INSERT INTO PLAYLIST (id_playlist, nomplaylist, idutilisateur) VALUES
+     (1, 'MyPlaylist', 1),
+     (2, 'WorkoutSongs', 2)");
+
 
 }}
 
