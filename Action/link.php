@@ -12,7 +12,7 @@ if (isset($_POST['action'])) {
     switch ($action) {
         case 'login':
             echo "Redirecting to login.php";
-            header('Location: /templates/login.php');
+            header('Location: templates');
             exit();
         case 'register':
             echo "Redirecting to register.php";
