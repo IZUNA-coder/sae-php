@@ -1,9 +1,9 @@
 <?php
-
+namespace Action;
 print_r("Hello World");
 // Check if the 'action' parameter is present in the URL
-if (isset($_POST['action'])) {
-    $action = $_POST['action']; // Get the value of the 'action' parameter
+if (isset($_GET['action'])) {
+    $action = $_GET['action']; // Get the value of the 'action' parameter
 
     // Debugging: Output the value of $action
     var_dump($action);
