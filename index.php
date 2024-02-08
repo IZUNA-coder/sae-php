@@ -19,7 +19,7 @@ switch ($action) {
         break;
         
     default:
-        include 'Action/form.php';
+        include 'Action/formHome.php';
         break;
 }
 $content = ob_get_clean();
