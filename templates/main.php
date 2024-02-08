@@ -8,7 +8,8 @@
 <body>
   
 
-<?php echo $content ?? null ?>
+<?php
+ echo $content ?? null ?>
 
 
 </body>

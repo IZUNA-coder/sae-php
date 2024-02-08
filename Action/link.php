@@ -2,29 +2,30 @@
 namespace Action;
 session_start();
 
-print_r("Hello World");
+if (isset($_GET['action'])) {
+    $action = $_GET ['action'];
 
-if (isset($_REQUEST['action'])) {
-    $action = $_REQUEST ['action'];
-
-    print_r($action);
 
     switch ($action) {
         case 'register':
             echo "Redirecting to register.php";
             header('Location: register.php');
-            break;
+            exit();
+            break;  
         case 'logout':
-            echo "Redirecting to logout.php";
-            header('Location: logout.php');
+            header("Location: ../templates/logout.php");
+            exit(); 
             break;
         case 'chanson':
             echo "Redirecting to chanson.php";
             header('Location: chanson.php');
             break;
-        case 'connexion':
-            echo "Redirecting to connexion.php";
-            header('Location: login.php');
+        case 'login':
+            header("Location: ../templates/login.php");
+            exit();
+            break;
+        case 'some_value':
+            echo "You chose some_value";
             break;
         default:
             echo "Unknown action: $action";

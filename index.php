@@ -5,10 +5,12 @@ require_once 'Configuration/config.php';
 
 require 'Classes/autoloader.php'; 
 Autoloader::register(); 
+require "Action/link.php";
 
 
 // Manage action / controller
 $action = $_REQUEST['action'] ?? false;
+print_r($action);
 
 ob_start();
 switch ($action) {
