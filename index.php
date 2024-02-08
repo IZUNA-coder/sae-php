@@ -13,7 +13,7 @@ $action = $_REQUEST['action'] ?? false;
 ob_start();
 switch ($action) {
     case 'submit':
-        include 'Action/link.php';
+        include './Action/link.php';
         break;
         
     default:
