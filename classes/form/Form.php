@@ -25,8 +25,7 @@ class Form implements InputRender{
         protected string $method,
         private string $id
     ){
-        // ajoute au formulaire son identifiant
-        $this->addInput(new Hidden($this->id, true, "form_id", "form_id"));
+        
     }
 
     /**

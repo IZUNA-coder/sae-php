@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
     switch ($action) {
         case 'register':
             echo "Redirecting to register.php";
-            header('Location: register.php');
+            header("Location: ../templates/register.php");
             exit();
             break;  
         case 'logout':
