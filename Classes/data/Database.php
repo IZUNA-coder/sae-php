@@ -43,6 +43,16 @@ class Database{
         return $requete;
     } 
 
+    public function execute(string $query){
+        try {
+            $this->getPDO()->exec($query);
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
     
     /**
      * @return void

@@ -26,8 +26,8 @@ class ControlleurMusique extends Controlleur
                 "chansonsbyid" => $chanson->getchansonInAlbum($_GET['id']), 
                 "chansons" => $chanson->getChanson(), 
                 "artistes" => $artiste->getArtistes(),
-                "te" => $te->getPlaylistByUser(1),
-                "testPlaylist" => $te->getPlaylistById(1),
+                "te" => $te->getPlaylistByUser(1), // ne marche pas
+                "testPlaylist" => $te->getPlaylistById(1), // ça marche
                 "playlist" => $te->getPlaylist(),
                 "albumbyid" => $album->getAlbumById($_GET['id']), 
             ]);
@@ -45,7 +45,7 @@ class ControlleurMusique extends Controlleur
         $chanson->getPlaylistByUser($_SESSION['auth']);
         $idchanson = $_POST['id'];
         $idplaylist = $_POST['name'];
-        $chanson->addChansonToPlaylist(1, 1);
+        $chanson->addChansonToPlaylist(1, 1); // a changer
        
         $this->redirect("ControlleurHome", "view");
     }
@@ -59,7 +59,7 @@ class ControlleurMusique extends Controlleur
         return $form;
     }
 
-    public function getFormAjout($id){
+    public function getFormAjout($id){ // ne veut pas mettre la méthode dans la page musique.php
         $forms = new Form("/?controller=ControlleurMusique&action=submit", Form::POST, "musique_form");
         $forms->setController("ControlleurMusique", "submitAjout");
         $forms->addInput(new Submit("Ajouter", true, $_SESSION["playlists"][0]["idutilisateur"], $id));

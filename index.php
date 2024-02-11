@@ -40,7 +40,7 @@ if(isset($_GET['controller']) && isset($_GET['action'])){
 
     if(!is_null($controller)){
         $actionName = $_GET["action"];
-        echo $controller->$actionName();
+            echo $controller->$actionName();
     }
 
 }else{

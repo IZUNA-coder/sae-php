@@ -62,7 +62,6 @@ foreach($chansonsbyid as $chansonbyid) {
             echo "<h3>ID USER Playlist: {$idutilisateur} </h3>";
             echo '<br>';
             echo '<br>';
-
             echo "Playlists :";
             echo '<br>';
             echo '<br>';

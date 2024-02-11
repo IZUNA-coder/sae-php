@@ -120,6 +120,17 @@ class DBPlaylist{
         return false;
     }
 
+    //public function addChansonToPlaylist($idchanson, $idplaylist)
+    //{
+    //    $db = new DBPlaylist();
+//
+    //    $stmt = $db->db->execute('INSERT INTO CONTENIR (id_playlist, idchanson) VALUES (' . $idplaylist . ',' . $idchanson . ')');
+    //    if($stmt){
+    //        return true;
+    //    }
+    //    return false;
+    //}
+
     public function deleteChansonFromPlaylist($idchanson, $idplaylist)
     {
         $stmt = $this->db->prepare('DELETE FROM CONTENIR WHERE id_playlist = ? AND idchanson = ?', [$idplaylist, $idchanson]);
