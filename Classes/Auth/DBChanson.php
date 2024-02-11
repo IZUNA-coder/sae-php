@@ -37,6 +37,8 @@ class DBChanson{
     public static function getchansonById($id)
     {
         $db = new DBChanson();
+        $chansonsArray = array();
+
         $stmt = $db->db->prepare('SELECT * FROM CHANSON WHERE idchanson = ?', [$id]);
         $chansons = $stmt->fetchAll(PDO::FETCH_OBJ);
         if($chansons){
