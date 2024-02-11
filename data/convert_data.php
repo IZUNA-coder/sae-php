@@ -2,9 +2,9 @@
 
 try{
 
-    if (file_exists('sound.sqlite3')) {
-        unlink('sound.sqlite3');
-    }
+    //if (file_exists('sound.sqlite3')) {
+    //    unlink('sound.sqlite3');
+    //}
     
 
     if (!file_exists('sound.sqlite3')) {

@@ -41,6 +41,12 @@ class DBAuth
     
     return false;
 }
+public function addUser($username, $password, $email, $nom, $prenom)
+{
+    $stmt = $this->db->prepare("INSERT INTO UTILISATEUR (pseudo, nom, prenom, email, mdp, id_role) VALUES (?, ?, ?, ?, ?, ?)", [$username, $nom, $prenom, $email, $password, 2]);
+
+    return $stmt !== false;
+}
 
     public function logged()
     {

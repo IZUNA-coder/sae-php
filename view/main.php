@@ -10,6 +10,10 @@
 
 <?php 
 echo "<h1>Bonjour {$_SESSION["prenom"]} </h1>";
+if(isset($_SESSION["userRegister"])){
+    echo "<h2>User Vient de S'incrire  {$_SESSION["userRegister"]}</h2>";
+    var_dump($_SESSION["userRegister"]);
+}
 
 
 echo $form ?? null; 
@@ -27,6 +31,8 @@ foreach($albums as $album){
         }
     } 
 }
+echo $formRegister ?? null;
+
 ?>
 
 <footer>

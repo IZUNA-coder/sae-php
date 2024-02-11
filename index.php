@@ -7,6 +7,7 @@ use Controlleur\ControlleurAlbum;
 use Controlleur\ControlleurHome;
 use Controlleur\ControlleurLogin;
 use Controlleur\ControlleurMusique;
+use Controlleur\ControlleurRegister;
 
 if(!isset($_SESSION)){ 
     session_start(); 
@@ -33,6 +34,9 @@ if(isset($_GET['controller']) && isset($_GET['action'])){
             break;
         case "ControlleurMusique":
             $controller = new ControlleurMusique($_REQUEST);
+            break;
+        case "ControlleurRegister":
+            $controller = new ControlleurRegister($_REQUEST);
             break;
         default:
             $controller = null;
