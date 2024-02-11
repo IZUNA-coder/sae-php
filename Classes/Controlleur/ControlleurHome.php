@@ -64,11 +64,20 @@ class ControlleurHome extends Controlleur
     public function getFormRegister()
     {   
         $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
-        $form->setController("ControlleurRegister", "submit");
+        $form->setController("ControlleurHome", "submit");
         $form->addInput(new Link("/?controller=ControlleurRegister&action=view&id", "Register"));
 
         return $form;
     }
+    
+    //public function getFormRegister()
+    //{   
+    //    $form = new Form("/?controller=ControlleurRegister&action=view", Form::GET, "home_form");
+    //    $form->setController("ControlleurRegister", "submit");
+    //    $form->addInput(new Submit("Register", true, "", ""));
+//
+    //    return $form;
+    //}
     
 
     public function getFormLink($idartiste){
