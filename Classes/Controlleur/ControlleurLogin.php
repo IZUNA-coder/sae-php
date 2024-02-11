@@ -5,6 +5,7 @@ use Auth\DBAuth;
 use form\Form;
 use form\type\Submit;
 use form\type\Text;
+use form\type\PasswordField;
 
 class ControlleurLogin extends Controlleur
 {
@@ -41,7 +42,9 @@ class ControlleurLogin extends Controlleur
     {
         $form = new Form("/?controller=ControlleurLogin&action=submit", Form::POST, "login_form");
         $form->addInput((new Text("", true,"pseudo", "pseudo"))->setLabel("Nom d'utilisateur"));
-        $form->addInput((new Text("", true,"password", "password"))->setLabel("Mot de passe"));
+        $passwordField = new PasswordField("", true, "password", "password");
+        $passwordField->setLabel("Mot de passe");
+        $form->addInput($passwordField);
         $form->setController("ControlleurLogin", "submit");
         $form->addInput(new Submit("Connexion", true, "connexion", "connexionId"));
         return $form;

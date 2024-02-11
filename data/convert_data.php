@@ -144,8 +144,8 @@ try{
 
 // Insert into ALBUM table
 $db->exec("INSERT INTO ALBUM (nom_album, annee_album, image_album, idartiste) VALUES
-     ('Album1', '2022', './fixtures/images/Terry_Allen_Pedal_Steal.jpg', 1),
-     ('Album2', '2023', './fixtures/images/Terry_Allen_Pedal_Steal.jpg', 2)");
+     ('Album1', '2022', './data/images/Terry_Allen_Pedal_Steal.jpg', 1),
+     ('Album2', '2023', './data/images/Terry_Allen_Pedal_Steal.jpg', 2)");
 
 // Insert into GENRE table
 $db->exec("INSERT INTO GENRE (nomgenre) VALUES
