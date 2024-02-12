@@ -19,10 +19,11 @@ class ControlleurAlbum extends Controlleur
                 "nom_album" => $_SESSION['titre'] ?? "aucun album",
                 "anneeAlbum" => $_SESSION['annee_album'] ?? "aucune annee",
                 "imageAlbum" => $_SESSION['image_album'] ?? "aucune image",
-                "albums" => $albums,
+                "albumbyid" => $dbAlbum->getAlbumById($_GET['id']),
 
                 
             ]);
+
         }
     }
 
@@ -46,15 +47,6 @@ class ControlleurAlbum extends Controlleur
         $form->addInput(new Submit("Retour", true, "", ""));
         return $form;
     }
-
-    public function getFormAjout()
-    {
-        $form = new Form("/?controller=ControlleurAlbum&action=submitAjout", Form::POST, "album_form");
-        $form->setController("ControlleurAlbum", "submitAjout");
-        $form->addInput(new Submit("AjouterAlbum", true, "", ""));
-        return $form;
-    }
-
 
 
 
