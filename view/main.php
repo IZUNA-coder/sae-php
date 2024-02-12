@@ -25,22 +25,25 @@ if($_SESSION["id_role"] == 1){
     echo $formAdminArtiste ?? null;
     echo "</section>";
 
+    
+
 }
 
-
-foreach($albums as $album){
-    echo "<h2> {$album['nom_album']}</h2>";
-    echo "<h3> {$album['annee_album']}</h3>";
-    echo "<img src='{$album['image_album']}' width='100px'>";
-    echo "<br>";   
- 
-    foreach($artistes as $artiste){
-        if ($artiste['idartiste'] == $album['idartiste']) {
-            echo $formLinks[$artiste['idartiste']] ?? null;
-            echo "<h4> {$artiste['prenom_artiste']} {$artiste['nom_artiste']}</h4>";
-            break;  
-        }
-    } 
+if($_SESSION["id_role"] == 2){
+    foreach($albums as $album){
+        echo "<h2> {$album['nom_album']}</h2>";
+        echo "<h3> {$album['annee_album']}</h3>";
+        echo "<img src='{$album['image_album']}' width='100px'>";
+        echo "<br>";   
+    
+        foreach($artistes as $artiste){
+            if ($artiste['idartiste'] == $album['idartiste']) {
+                echo $formLinks[$artiste['idartiste']] ?? null;
+                echo "<h4> {$artiste['prenom_artiste']} {$artiste['nom_artiste']}</h4>";
+                break;  
+            }
+        } 
+    }
 }
 
 ?>
