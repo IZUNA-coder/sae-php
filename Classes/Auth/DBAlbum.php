@@ -131,16 +131,6 @@ class DBAlbum{
         $stmt = $this->db->prepare('DELETE FROM ALBUM WHERE idalbum = ?', [$id]);
         return $stmt !== false;
     }
-    public function updateAlbum($id, $titre, $annee, $idartiste, $image)
-    {
-        $stmt = $this->db->prepare('UPDATE ALBUM SET nom_album = ?, annee_album = ?, image_album = ?, idartiste = ? WHERE idalbum = ?', [$titre, $annee, $image, $idartiste, $id]);
-        return $stmt !== false;
-    }
-
-    public function deleteAlbum($id)
-    {
-        $stmt = $this->db->prepare('DELETE FROM ALBUM WHERE idalbum = ?', [$id]);
-        return $stmt !== false;
-    }
+  
 
 }
