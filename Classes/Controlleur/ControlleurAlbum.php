@@ -20,9 +20,8 @@ class ControlleurAlbum extends Controlleur
                 "anneeAlbum" => $_SESSION['annee_album'] ?? "aucune annee",
                 "imageAlbum" => $_SESSION['image_album'] ?? "aucune image",
                 "albumbyid" => $dbAlbum->getAlbumById($_GET['id']),
-
-                
             ]);
+
         }
     }
 
@@ -40,7 +39,5 @@ class ControlleurAlbum extends Controlleur
         return $form;
     }
 
-
-
-
+    
 }
