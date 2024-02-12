@@ -35,6 +35,7 @@ class DBAuth
             $_SESSION['nom'] = $user->nom;
             $_SESSION['prenom'] = $user->prenom;
             $_SESSION['mdp'] = $user->mdp;
+            $_SESSION['id_role'] = $user->id_role;
             return $user;
         }
     }

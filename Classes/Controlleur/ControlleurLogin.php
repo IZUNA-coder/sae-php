@@ -29,6 +29,8 @@ class ControlleurLogin extends Controlleur
         $form->addInput(new Link("/?controller=ControlleurRegister&action=view&id", "Register"));
         return $form;
     }
+
+    
     
 
     public function submit()

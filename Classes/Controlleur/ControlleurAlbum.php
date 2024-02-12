@@ -9,7 +9,7 @@ class ControlleurAlbum extends Controlleur
 {
     public function view()
     {
-    $dbAlbum = new DBAlbum();
+    $albums = DBAlbum::getAlbums();
 
         if(!isset($_SESSION['auth'])){
             $this->redirect("ControlleurLogin", "view");
@@ -19,7 +19,7 @@ class ControlleurAlbum extends Controlleur
                 "nom_album" => $_SESSION['titre'] ?? "aucun album",
                 "anneeAlbum" => $_SESSION['annee_album'] ?? "aucune annee",
                 "imageAlbum" => $_SESSION['image_album'] ?? "aucune image",
-                "albumbyid" => $dbAlbum->getAlbumById($_GET['id']),
+                "albums" => $albums,
 
                 
             ]);
@@ -28,6 +28,13 @@ class ControlleurAlbum extends Controlleur
 
     public function submit()
     {
+        $this->redirect("ControlleurHome", "view");
+    }
+
+    public function submitAjout()
+    {
+        $dbAlbum = new DBAlbum();
+        $dbAlbum->addAlbum($_POST['titre'], $_POST['annee'], $_POST['image'], $_POST['idartiste']);
         $this->redirect("ControlleurHome", "view");
     }
     
@@ -39,6 +46,15 @@ class ControlleurAlbum extends Controlleur
         $form->addInput(new Submit("Retour", true, "", ""));
         return $form;
     }
+
+    public function getFormAjout()
+    {
+        $form = new Form("/?controller=ControlleurAlbum&action=submitAjout", Form::POST, "album_form");
+        $form->setController("ControlleurAlbum", "submitAjout");
+        $form->addInput(new Submit("AjouterAlbum", true, "", ""));
+        return $form;
+    }
+
 
 
 

@@ -29,17 +29,32 @@ class ControlleurHome extends Controlleur
                 }
             }
 
-            $this->render("main.php", [
-                "form" => $this->getForm(),
-                "utilisateur" => $_SESSION['pseudo'] ?? "aucun",
-                "email" => $_SESSION['email'],
-                "nom" => $_SESSION['nom'],
-                "prenom" => $_SESSION['prenom'],
-                "mdp" => $_SESSION['mdp'],
-                "artistes" => $artistes,
-                "albums" => $albums,
-                "formLinks" => $formLinks,
+            if($_SESSION['id_role'] == 1){
+                $this->render("main.php", [
+                    "form" => $this->getFormDeconnexion(),
+                    "utilisateur" => $_SESSION['pseudo'] ?? "aucun",
+                    "email" => $_SESSION['email'],
+                    "nom" => $_SESSION['nom'],
+                    "prenom" => $_SESSION['prenom'],
+                    "mdp" => $_SESSION['mdp'],
+                    "formRegister" => $this->getFormRegister(),
+                    "formAdminAlbum" => $this->getFormAdminAlbum(),
+                    "formAdminArtiste" => $this->getFormAdminArtiste(), // ne marche pas
+                ]);
+            }else{
+                $this->render("main.php", [
+                    "form" => $this->getFormDeconnexion(),
+                    "utilisateur" => $_SESSION['pseudo'] ?? "aucun",
+                    "email" => $_SESSION['email'],
+                    "nom" => $_SESSION['nom'],
+                    "prenom" => $_SESSION['prenom'],
+                    "mdp" => $_SESSION['mdp'],
+                    "artistes" => $artistes,
+                    "albums" => $albums,
+                    "formLinks" => $formLinks,
+                    "ajout" =>$dej ?? ""
             ]);
+        }
         }
     }
 
@@ -50,7 +65,7 @@ class ControlleurHome extends Controlleur
         $this->redirect("ControlleurLogin", "view");
     }
 
-    public function getForm()
+    public function getFormDeconnexion()
     {
         $form = new Form("/?controller=ControlleurHome&action=submit", Form::GET, "home_form");
         $form->setController("ControlleurHome", "submit");
@@ -60,21 +75,33 @@ class ControlleurHome extends Controlleur
         return $form;
     }
 
-
-    //public function getFormRegister()
-    //{   
-    //    $form = new Form("/?controller=ControlleurRegister&action=view", Form::GET, "home_form");
-    //    $form->setController("ControlleurRegister", "submit");
-    //    $form->addInput(new Submit("Register", true, "", ""));
-//
-    //    return $form;
-    //}
-    
+    public function getFormRegister()
+    {   
+        $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
+        $form->setController("ControlleurHome", "submit");
+        $form->addInput(new Link("/?controller=ControlleurRegister&action=view&id", "Register"));
+        return $form;
+    }
+  
 
     public function getFormLink($idartiste){
         $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
         $form->setController("ControlleurHome", "submit");
         $form->addInput(new Link("/?controller=ControlleurMusique&action=view&id={$idartiste}", "Albums"));
+        return $form;
+    }
+
+    public function getFormAdminAlbum(){
+        $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
+        $form->setController("ControlleurHome", "submit");
+        $form->addInput(new Link("/?controller=ControlleurAlbum&action=view&id", "Albums"));
+        return $form;
+    }
+
+    public function getFormAdminArtiste(){
+        $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
+        $form->setController("ControlleurHome", "submit");
+        $form->addInput(new Link("/?controller=ControlleurArtiste&action=view&id", "Artistes"));
         return $form;
     }
 
