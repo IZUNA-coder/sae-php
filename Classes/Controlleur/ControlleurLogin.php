@@ -3,6 +3,7 @@ namespace Controlleur;
 
 use Auth\DBAuth;
 use form\Form;
+use form\type\Link;
 use form\type\Submit;
 use form\type\Text;
 use form\type\PasswordField;
@@ -15,12 +16,19 @@ class ControlleurLogin extends Controlleur
         if(isset($_SESSION['auth'])){
             $this->redirect("ControlleurHome", "view");
         }else{
-            $this->render("login.php", ["form" => $this->getForm()]);
+            $this->render("login.php", ["form" => $this->getForm(),
+        "formRegister" => $this->getFormRegister()]);
         }
     }
 
    
-
+    public function getFormRegister()
+    {   
+        $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
+        $form->setController("ControlleurHome", "submit");
+        $form->addInput(new Link("/?controller=ControlleurRegister&action=view&id", "Register"));
+        return $form;
+    }
     
 
     public function submit()

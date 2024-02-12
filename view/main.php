@@ -31,7 +31,6 @@ foreach($albums as $album){
         }
     } 
 }
-echo $formRegister ?? null;
 
 ?>
 

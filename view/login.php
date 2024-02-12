@@ -12,6 +12,7 @@
         echo $_SESSION['error'];
     }
     echo $form ?? null; 
+    echo $formRegister ?? null;
 ?>
 
 </body>

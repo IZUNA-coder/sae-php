@@ -102,10 +102,18 @@ class DBAlbum{
 
                 );
             }
-            $_SESSION['albums'] = $albumsArray;
+            if(isset($_SESSION['albums'])){
+                $_SESSION['albums'] = array_merge($_SESSION['albums'], $albumsArray);
+            }
+            else{
+                $_SESSION['albums'] = $albumsArray;
+            }
             return $albumsArray;
         }
         return false;
     }
+
+
+
 
 }

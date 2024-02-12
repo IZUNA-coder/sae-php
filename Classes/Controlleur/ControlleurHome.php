@@ -31,7 +31,6 @@ class ControlleurHome extends Controlleur
 
             $this->render("main.php", [
                 "form" => $this->getForm(),
-                "formRegister" => $this->getFormRegister(),
                 "utilisateur" => $_SESSION['pseudo'] ?? "aucun",
                 "email" => $_SESSION['email'],
                 "nom" => $_SESSION['nom'],
@@ -61,15 +60,7 @@ class ControlleurHome extends Controlleur
         return $form;
     }
 
-    public function getFormRegister()
-    {   
-        $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
-        $form->setController("ControlleurHome", "submit");
-        $form->addInput(new Link("/?controller=ControlleurRegister&action=view&id", "Register"));
 
-        return $form;
-    }
-    
     //public function getFormRegister()
     //{   
     //    $form = new Form("/?controller=ControlleurRegister&action=view", Form::GET, "home_form");
