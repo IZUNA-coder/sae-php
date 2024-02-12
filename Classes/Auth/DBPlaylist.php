@@ -77,10 +77,7 @@ class DBPlaylist{
     public function addPlaylist($nomplaylist, $idutilisateur)
     {
         $stmt = $this->db->prepare('INSERT INTO PLAYLIST (nomplaylist, idutilisateur) VALUES (?, ?)', [$nomplaylist, $idutilisateur]);
-        if($stmt){
-            return true;
-        }
-        return false;
+        return $stmt !== false;
     }
 
     public function deletePlaylist($id, $idutilisateur)

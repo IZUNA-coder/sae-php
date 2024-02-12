@@ -83,15 +83,14 @@ try{
             FOREIGN KEY (idalbum) REFERENCES ALBUM (idalbum),
             FOREIGN KEY (idutilisateur) REFERENCES UTILISATEUR (idutilisateur)
         )");
-
+        
         $db->exec("CREATE TABLE IF NOT EXISTS PLAYLIST (
-            id_playlist INTEGER NOT NULL,
+            id_playlist INTEGER PRIMARY KEY AUTOINCREMENT,
             nomplaylist TEXT,
-            idutilisateur NOT NULL,
-            PRIMARY KEY (id_playlist, idutilisateur)
+            idutilisateur INTEGER NOT NULL,
             FOREIGN KEY (idutilisateur) REFERENCES UTILISATEUR (idutilisateur)
         )");
-
+        
         $db->exec("CREATE TABLE IF NOT EXISTS PRODUCTEUR (
             idproducteur INTEGER PRIMARY KEY,
             nom_producteur TEXT,

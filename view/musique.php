@@ -10,7 +10,7 @@
 
     <?php
 
-use Auth\DBPlaylist;
+    use Auth\DBPlaylist;
 
     echo $formRetour ?? null;
     
@@ -59,6 +59,7 @@ foreach($chansonsbyid as $chansonbyid) {
 
             var_dump($testPlaylist); // user by ID
             echo '<br>';
+            var_dump($_SESSION["playlists"]);
             echo "<h3>ID USER Playlist: {$idutilisateur} </h3>";
             echo '<br>';
             echo '<br>';

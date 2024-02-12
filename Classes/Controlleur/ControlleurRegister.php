@@ -2,6 +2,7 @@
 
 namespace Controlleur;
 use Auth\DBAuth;
+use Auth\DBPlaylist;
 use form\Form;
 use form\type\Submit;
 use form\type\Text;
@@ -22,9 +23,12 @@ class ControlleurRegister extends Controlleur{
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $auth = new DBAuth;
+        $playlist = new DBPlaylist;
         $user = $auth->addUser($username, $password, $email, $nom, $prenom);
         $_SESSION["userRegister"] = $user;
         if($user){
+            $auth->login($username, $password);
+            $playlist->addPlaylist("ma Playlist", $_SESSION["auth"]);
             $this->redirect("ControlleurHome", "view");
         }else{
             $_SESSION['error'] = "Nom d'utilisateur ou mot de passe incorrect";
