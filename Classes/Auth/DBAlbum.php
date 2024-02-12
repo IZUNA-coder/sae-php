@@ -114,6 +114,13 @@ class DBAlbum{
     }
 
 
+    public function addAlbum($titre, $annee, $idartiste, $image)
+    {
+        $stmt = $this->db->prepare('INSERT INTO ALBUM (nom_album, annee_album, image_album, idartiste) VALUES (?, ?, ?, ?)', [$titre, $annee, $image, $idartiste]);
+        return $stmt !== false;
+    }
+
+
 
 
 }
