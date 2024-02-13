@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chanson</title>
+    <script defer>
+   window.onload = function() {
+    let inputFields = document.querySelectorAll("#album_id");
+    inputFields.forEach((inputField, index) => {
+        if(inputField){
+        console.log(`Input field ${index + 1}:`, inputField.value);
+        }else{
+            console.log("Input field not found");
+        }
+    });
+};
+</script>
 </head>
 <body>
-    <H1>ETHIBFOHIBN</H1>
+    <H1>Musique Album</H1>
 
     <?php
 
     use Auth\DBPlaylist;
 
-    echo $formRetour ?? null;
+    //echo $formRetour ?? null;
     
     echo '<br>';
     echo "<h1>ID USER : {$_SESSION["auth"]}</h1>";
@@ -47,32 +59,32 @@ foreach($chansonsbyid as $chansonbyid) {
             echo '<br>';
             echo '<br>';
             echo "<h3>ID Chanson: {$chanson['idchanson']} </h3>";
+            var_dump($chanson['idchanson']);
             $formAjout = $this->getFormAjout($chanson['idchanson']);
+            $_SESSION["idchansonAjout"] = $chanson['idchanson'];
             echo $formAjout ?? null;
+            var_dump($formAjout);
             echo "<hr>";
             
-            $idutilisateur = $_SESSION["playlists"][0]["idutilisateur"];
             echo '<br>';
             echo "Playlist:";
             echo '<br>';
             echo '<br>';
-
-            var_dump($testPlaylist); // user by ID
-            echo '<br>';
-            var_dump($_SESSION["playlists"]);
-            echo "<h3>ID USER Playlist: {$idutilisateur} </h3>";
+            echo "tes";
             echo '<br>';
             echo '<br>';
-            echo "Playlists :";
-            echo '<br>';
-            echo '<br>';
-            var_dump($playlist); // toutes les playlists
+           
             break;
         }
     }
 }
 echo "</div>";
+
+echo "id Chanson: ";
+var_dump($_SESSION["idchansonAjout"]);
 ?>
+
+
 
 </body>
 </html>

@@ -49,10 +49,6 @@ class ControlleurAlbum extends Controlleur
         $this->redirect("ControlleurHome", "view");
     }
 
-    public function submitAjout() // a modifier 
-    {
-        $this->redirect("ControlleurDelete", "view");
-    }
     
 
     //public function getFormRetour()

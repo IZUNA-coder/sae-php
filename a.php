@@ -23,10 +23,11 @@ class ControlleurMusique extends Controlleur
             $te = new DBPlaylist();
             
             $this->render("musique.php", [
-                //"formRetour" => $this->getFormRetour(),
+                "formRetour" => $this->getFormRetour(),
                 "chansonsbyid" => $chanson->getchansonInAlbum($_GET['id']), 
                 "chansons" => $chanson->getChanson(), 
                 "artistes" => $artiste->getArtistes(),
+                "te" => $te->getPlaylistByUser(1), // ne marche pas
                 "playlist" => $te->getPlaylist(),
                 "albumbyid" => $album->getAlbumById($_GET['id']), 
             ]);
@@ -40,20 +41,24 @@ class ControlleurMusique extends Controlleur
 
     public function submitAjout()
     {
-        
+        $chanson = new DBPlaylist();
+        $chanson->getPlaylistByUser($_SESSION['auth']);
         if (isset($_POST['album_id'])) {
-            $chanson = new DBPlaylist();
             $idchanson = $_POST['album_id'];
-            $_SESSION["added_album_id"] = $idchanson;
-            $chanson->getPlaylistByUser($_SESSION['auth']);
-            $idplaylist = $_SESSION["playlists"][0]["idutilisateur"]; 
-            $chanson->addChansonToPlaylist($idchanson, $idplaylist); 
-            $this->redirect("ControlleurHome", "view");
+        $idplaylist = $_POST['name'];
+        $chanson->addChansonToPlaylist($idchanson, 1); // a changer
+        $this->redirect("ControlleurHome", "view");
+
         }
         else {
             echo "No album_id in POST data";
         }
     }
+
+
+    
+    
+        
 
     public function getFormRetour()
     {
@@ -63,12 +68,20 @@ class ControlleurMusique extends Controlleur
         return $form;
     }
 
-    
     public function getFormAjout($id){ // ne veut pas mettre la méthode dans la page musique.php
         $forms = new Form("/?controller=ControlleurMusique&action=submitAjout", Form::POST, "musique_form");
-        $forms->setController("ControlleurMusique", "");
+        $forms->setController("ControlleurMusique", "submitAjout");
         $forms->addInput(new Hidden($id,true, "album_id", "album_id"));
-        $forms->addInput(new Submit("Ajouter", true, $id, $id));
+        $forms->addInput(new Submit("Ajouter", true, $_SESSION["playlists"][0]["idutilisateur"], $id));
+        return $forms;
+    }
+
+    public function getFormDelete($id){ 
+        $forms = new Form("/?controller=ControlleurAlbum&action=submitDelete", Form::POST, "musique_form");
+        $forms->setController("ControlleurAlbum", "submitDelete");
+        $forms->addInput(new Hidden($id,true, "album_id", "album_id"));
+        $forms->addInput(new Submit("Supprimer", true, $id, $id));
+        
         return $forms;
     }
 

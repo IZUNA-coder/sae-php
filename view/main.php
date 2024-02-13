@@ -24,12 +24,17 @@ if($_SESSION["id_role"] == 1){
     echo "<section>";
     echo $formAdminArtiste ?? null;
     echo "</section>";
-
-    
+ 
 
 }
 
 if($_SESSION["id_role"] == 2){
+    if (isset($_SESSION['added_album_id'])) {
+        $added_album_id = $_SESSION['added_album_id'];
+        echo "The ID of the deleted album is: " . $added_album_id;
+    }
+    
+    var_dump($_SESSION);  
     foreach($albums as $album){
         echo "<h2> {$album['nom_album']}</h2>";
         echo "<h3> {$album['annee_album']}</h3>";

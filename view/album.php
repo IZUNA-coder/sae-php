@@ -17,25 +17,7 @@
     });
 };
 </script>
-<script defer>
-        //formDelete.addEventListener('submit', function(e){
-        //    e.preventDefault();
-        //    let formData = new FormData(formDelete);
-        //    fetch('index.php?action=deleteAlbum', {
-        //        method: 'POST',
-        //        body: formData
-        //    })
-        //    .then(response => response.json())
-        //    .then(data => {
-        //        console.log(data);
-        //    })
-        //    .catch(error => {
-        //        console.error(error);
-        //    });
-        //});
 
-      
-</script>
 </head>
 <body>
   
@@ -98,7 +80,7 @@ if($albums ?? null && !empty($albums)){
         echo "<td>{$album['nom_album']}</td>";
         echo "<td>{$album['annee_album']}</td>";
         echo "<td><img src=\"{$album['image_album']}\" width=\"100px\"></td>";
-        echo '<td>{{ groupe.get_style_nom() }}</td>';
+        echo '<td> Fonction à faire </td>';
         echo '<td>';
         
             //echo $formAdminAjout ?? null;
@@ -106,6 +88,7 @@ if($albums ?? null && !empty($albums)){
                 if ($albumbyid["idalbum"] == $album['idalbum']) {
                     $formDelete = $this->getFormDelete($albumbyid["idalbum"]);
                     echo $formDelete ?? null;
+                    var_dump($formDelete);
                     break;  
                 }
             }

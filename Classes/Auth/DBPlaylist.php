@@ -30,7 +30,7 @@ class DBPlaylist{
                 "idutilisateur" => $playlist->idutilisateur
             );
         }
-        $_SESSION['playlists'] = $playlists;
+       
         return $playlists;
     }
 
@@ -48,8 +48,8 @@ class DBPlaylist{
                     "idutilisateur" => $playlist->idutilisateur
                 );
             }
-            $_SESSION['playlists'] = $playlistsArray;
-            return $playlistsArray;
+            $_SESSION['playlists'] = $playlistsArray; 
+        return $playlistsArray;
         }
         return false;
     }
@@ -69,6 +69,7 @@ class DBPlaylist{
                     "idutilisateur" => $playlist->idutilisateur
                 );
             }
+            $_SESSION['playlists'] = $playlistsArray;
             return $playlistsArray;
         }
         return false;
@@ -83,19 +84,13 @@ class DBPlaylist{
     public function deletePlaylist($id, $idutilisateur)
     {
         $stmt = $this->db->prepare('DELETE FROM PLAYLIST WHERE id_playlist = ? AND idutilisateur = ?', [$id, $idutilisateur]);
-        if($stmt){
-            return true;
-        }
-        return false;
+        return $stmt !== false;
     }
 
     public function updateNomPlaylist($id, $nomplaylist, $idutilisateur)
     {
         $stmt = $this->db->prepare('UPDATE PLAYLIST SET nomplaylist = ? WHERE id_playlist = ? AND idutilisateur = ? ', [$nomplaylist, $id, $idutilisateur]);
-        if($stmt){
-            return true;
-        }
-        return false;
+        return $stmt !== false;
     }
 
     public function getIdPlaylistByChanson($id)
@@ -111,30 +106,13 @@ class DBPlaylist{
     public function addChansonToPlaylist($idchanson, $idplaylist)
     {
         $stmt = $this->db->prepare('INSERT INTO CONTENIR (id_playlist, idchanson) VALUES (?, ?)', [$idplaylist, $idchanson]);
-        if($stmt){
-            return true;
-        }
-        return false;
+        return $stmt !== false;
     }
-
-    //public function addChansonToPlaylist($idchanson, $idplaylist)
-    //{
-    //    $db = new DBPlaylist();
-//
-    //    $stmt = $db->db->execute('INSERT INTO CONTENIR (id_playlist, idchanson) VALUES (' . $idplaylist . ',' . $idchanson . ')');
-    //    if($stmt){
-    //        return true;
-    //    }
-    //    return false;
-    //}
 
     public function deleteChansonFromPlaylist($idchanson, $idplaylist)
     {
         $stmt = $this->db->prepare('DELETE FROM CONTENIR WHERE id_playlist = ? AND idchanson = ?', [$idplaylist, $idchanson]);
-        if($stmt){
-            return true;
-        }
-        return false;
+        return $stmt !== false;
     }
 
     public function getIdChansonInPlaylist($id)
