@@ -12,6 +12,8 @@ class Form implements InputRender{
     // type possible du formulaire
     public const POST = "POST";
     public const GET = "GET";
+    public const PUT = "PUT";
+    public const DELETE = "DELETE";
 
     /** @var Input[] */
     private array $input = [];

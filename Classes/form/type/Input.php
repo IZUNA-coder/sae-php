@@ -10,12 +10,12 @@ abstract class Input implements InputRender{
     private string $label = "";
 
     protected string $value;
-    private string $name;
+    protected string $name;
     protected string $id;
 
     public function __construct(
         string $value,
-        private bool $required,
+        protected bool $required,
         string $name,
         string $id
     ){
