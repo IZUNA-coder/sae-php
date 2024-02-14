@@ -31,7 +31,7 @@ class ControlleurHome extends Controlleur
 
             if($_SESSION['id_role'] == 1){
                 $this->render("main.php", [
-                    "form" => $this->getFormDeconnexion(),
+                    "formRetour" => $this->getFormDeconnexion(),
                     "utilisateur" => $_SESSION['pseudo'] ?? "aucun",
                     "email" => $_SESSION['email'],
                     "nom" => $_SESSION['nom'],
@@ -43,7 +43,7 @@ class ControlleurHome extends Controlleur
                 ]);
             }else{
                 $this->render("main.php", [
-                    "form" => $this->getFormDeconnexion(),
+                    "formRetour" => $this->getFormDeconnexion(),
                     "utilisateur" => $_SESSION['pseudo'] ?? "aucun",
                     "email" => $_SESSION['email'],
                     "nom" => $_SESSION['nom'],
@@ -52,7 +52,6 @@ class ControlleurHome extends Controlleur
                     "artistes" => $artistes,
                     "albums" => $albums,
                     "formLinks" => $formLinks,
-                    "ajout" =>$dej ?? ""
             ]);
         }
         }
@@ -79,7 +78,7 @@ class ControlleurHome extends Controlleur
     {   
         $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
         $form->setController("ControlleurHome", "submit");
-        $form->addInput(new Link("/?controller=ControlleurRegister&action=view&id", "Register"));
+        $form->addInput(new Link("/?controller=ControlleurRegister&action=view", "Register"));
         return $form;
     }
   
@@ -94,14 +93,14 @@ class ControlleurHome extends Controlleur
     public function getFormAdminAlbum(){
         $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
         $form->setController("ControlleurHome", "submit");
-        $form->addInput(new Link("/?controller=ControlleurAlbum&action=view&id", "Albums"));
+        $form->addInput(new Link("/?controller=ControlleurAlbum&action=view", "Albums"));
         return $form;
     }
 
     public function getFormAdminArtiste(){
         $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
         $form->setController("ControlleurHome", "submit");
-        $form->addInput(new Link("/?controller=ControlleurArtiste&action=view&id", "Artistes"));
+        $form->addInput(new Link("/?controller=ControlleurArtiste&action=view", "Artistes"));
         return $form;
     }
 

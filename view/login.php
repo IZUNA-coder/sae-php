@@ -6,7 +6,6 @@
     <title>Login</title>
 </head>
 <body>
-    <h1> tesst</h1>
     <?php 
     if(isset($_SESSION['error'])) {
         echo $_SESSION['error'];

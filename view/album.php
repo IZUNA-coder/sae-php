@@ -24,12 +24,8 @@
 
 <?php 
 
-echo "<h1>Bonjour {$_SESSION["prenom"]} </h1>";
-if(isset($_SESSION["userRegister"])){
-    echo "<h2>User Vient de S'incrire  {$_SESSION["userRegister"]}</h2>";
-    var_dump($_SESSION["userRegister"]);
-}
-    echo $form ?? null; 
+echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>"; 
+echo $formRetour ?? null; 
 
 if($_SESSION["id_role"] == 1){
     echo "<section>";
@@ -41,21 +37,6 @@ if($_SESSION["id_role"] == 1){
     echo "</section>";
 
 }
-
-
-
-
-
-//foreach($albums as $album){  
-// 
-//    foreach($artistes as $artiste){
-//        if ($artiste['idartiste'] == $album['idartiste']) {
-//            echo $formLinks[$artiste['idartiste']] ?? null;
-//            echo "<h4> {$artiste['prenom_artiste']} {$artiste['nom_artiste']}</h4>";
-//            break;  
-//        }
-//    } 
-//}
 
 ?>
 
@@ -83,15 +64,11 @@ if($albums ?? null && !empty($albums)){
         echo '<td> Fonction à faire </td>';
         echo '<td>';
         
-            //echo $formAdminAjout ?? null;
-            foreach($albumsbyid as $albumbyid) {
-                if ($albumbyid["idalbum"] == $album['idalbum']) {
-                    $formDelete = $this->getFormDelete($albumbyid["idalbum"]);
-                    echo $formDelete ?? null;
-                    var_dump($formDelete);
-                    break;  
-                }
-            }
+            
+        $formDelete = $this->getFormDelete($album['idalbum']);
+        echo $formDelete ?? null;    
+        echo $formLinks ?? null;
+
         echo '</td>';
         echo '</tr>';
         

@@ -26,7 +26,7 @@ class ControlleurLogin extends Controlleur
     {   
         $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
         $form->setController("ControlleurHome", "submit");
-        $form->addInput(new Link("/?controller=ControlleurRegister&action=view&id", "Register"));
+        $form->addInput(new Link("/?controller=ControlleurRegister&action=view", "Register"));
         return $form;
     }
 

@@ -9,12 +9,8 @@
    
 
 <?php 
-echo "<h1>Bonjour {$_SESSION["prenom"]} </h1>";
-if(isset($_SESSION["userRegister"])){
-    echo "<h2>User Vient de S'incrire  {$_SESSION["userRegister"]}</h2>";
-    var_dump($_SESSION["userRegister"]);
-}
-echo $form ?? null; 
+echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>";
+echo $formRetour ?? null; 
 
 if($_SESSION["id_role"] == 1){
     echo "<section>";
@@ -29,12 +25,7 @@ if($_SESSION["id_role"] == 1){
 }
 
 if($_SESSION["id_role"] == 2){
-    if (isset($_SESSION['added_album_id'])) {
-        $added_album_id = $_SESSION['added_album_id'];
-        echo "The ID of the deleted album is: " . $added_album_id;
-    }
-    
-    var_dump($_SESSION);  
+     
     foreach($albums as $album){
         echo "<h2> {$album['nom_album']}</h2>";
         echo "<h3> {$album['annee_album']}</h3>";
@@ -45,6 +36,7 @@ if($_SESSION["id_role"] == 2){
             if ($artiste['idartiste'] == $album['idartiste']) {
                 echo $formLinks[$artiste['idartiste']] ?? null;
                 echo "<h4> {$artiste['prenom_artiste']} {$artiste['nom_artiste']}</h4>";
+                $_SESSION["idPage{$artiste['idartiste']}"] = $artiste['idartiste'];
                 break;  
             }
         } 

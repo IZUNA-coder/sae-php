@@ -58,7 +58,6 @@ class Form implements InputRender{
         $this->addInput(new Hidden($action, true, "action", "action"));
     }
 
-
     public function __toString(){
         return $this->render();
     }
@@ -84,7 +83,6 @@ class Form implements InputRender{
                 continue;
             }
             
-            
             $form .= "<div class='form-input'><div>".$input."</div></div>";
         }
 
@@ -93,6 +91,7 @@ class Form implements InputRender{
                 $form .= "<div class='form-input'><div>".$input."</div></div>";
             }
         }
+        $form .= "</form>";
         return $form;
-    }
+    } 
 }

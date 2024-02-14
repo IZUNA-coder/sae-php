@@ -6,7 +6,6 @@
     <title>Register</title>
 </head>
 <body>
-    <h1> register</h1>
     <?php 
     if(isset($_SESSION['error'])) {
         echo $_SESSION['error'];

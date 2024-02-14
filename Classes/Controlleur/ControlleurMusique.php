@@ -23,7 +23,7 @@ class ControlleurMusique extends Controlleur
             $te = new DBPlaylist();
             
             $this->render("musique.php", [
-                //"formRetour" => $this->getFormRetour(),
+                "formRetour" => $this->getFormRetour(),
                 "chansonsbyid" => $chanson->getchansonInAlbum($_GET['id']), 
                 "chansons" => $chanson->getChanson(), 
                 "artistes" => $artiste->getArtistes(),
@@ -44,15 +44,22 @@ class ControlleurMusique extends Controlleur
         if (isset($_POST['album_id'])) {
             $chanson = new DBPlaylist();
             $idchanson = $_POST['album_id'];
-            $_SESSION["added_album_id"] = $idchanson;
             $chanson->getPlaylistByUser($_SESSION['auth']);
             $idplaylist = $_SESSION["playlists"][0]["idutilisateur"]; 
             $chanson->addChansonToPlaylist($idchanson, $idplaylist); 
-            $this->redirect("ControlleurHome", "view");
+            $this->redirect("ControlleurMusique", "view", $_SESSION["idPage"]);
         }
         else {
             echo "No album_id in POST data";
         }
+    }
+
+    public function getFormAjout($id){ 
+        $forms = new Form("/?controller=ControlleurMusique&action=submitAjout", Form::POST, "musique_form");
+        $forms->setController("ControlleurMusique", "submitAjout");
+        $forms->addInput(new Hidden($id,true, "album_id", "album_id"));
+        $forms->addInput(new Submit("Ajouter", true, "submit", "submit")); 
+        return $forms;
     }
 
     public function getFormRetour()
@@ -64,12 +71,6 @@ class ControlleurMusique extends Controlleur
     }
 
     
-    public function getFormAjout($id){ // ne veut pas mettre la méthode dans la page musique.php
-        $forms = new Form("/?controller=ControlleurMusique&action=submitAjout", Form::POST, "musique_form");
-        $forms->setController("ControlleurMusique", "");
-        $forms->addInput(new Hidden($id,true, "album_id", "album_id"));
-        $forms->addInput(new Submit("Ajouter", true, $id, $id));
-        return $forms;
-    }
+    
 
 }
