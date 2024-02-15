@@ -7,8 +7,8 @@
 </head>
 <body>
     <?php 
-    if(isset($_SESSION['error'])) {
-        echo $_SESSION['error'];
+    if(isset($_SESSION['errorConnexion'])) {
+        echo $_SESSION['errorConnexion'];
     }
     echo $form ?? null; 
     echo $formRegister ?? null;

@@ -42,8 +42,17 @@ class DBAuth
     
     return false;
 }
+
 public function addUser($username, $password, $email, $nom, $prenom)
 {
+    $stmt = $this->db->prepare("SELECT * FROM UTILISATEUR WHERE pseudo = ?", [$username]);
+    $existingUser = $stmt->fetch(PDO::FETCH_OBJ);
+    
+    if ($existingUser) {
+        $_SESSION['errorAdd'] = "Nom d'utilisateur déjà utilisé";
+        return false; 
+    }
+    
     $stmt = $this->db->prepare("INSERT INTO UTILISATEUR (pseudo, nom, prenom, email, mdp, id_role) VALUES (?, ?, ?, ?, ?, ?)", [$username, $nom, $prenom, $email, $password, 2]);
 
     return $stmt !== false;

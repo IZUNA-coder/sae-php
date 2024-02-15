@@ -33,7 +33,6 @@ class ControlleurRegister extends Controlleur{
             $playlist->addPlaylist("ma Playlist", $_SESSION["auth"]);
             $this->redirect("ControlleurHome", "view");
         }else{
-            $_SESSION['error'] = "Nom d'utilisateur ou mot de passe incorrect";
             $this->redirect("ControlleurRegister", "view");
         }
     }

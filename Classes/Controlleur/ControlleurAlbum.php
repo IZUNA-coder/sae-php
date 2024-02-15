@@ -60,14 +60,22 @@ class ControlleurAlbum extends Controlleur
     }
 }
 
-    public function getFormDelete($id){ 
+    public function getFormDeleteAdmin($id){ 
         $forms = new Form("/?controller=ControlleurAlbum&action=submitDelete", Form::POST, "musique_form");
         $forms->setController("ControlleurAlbum", "submitDelete");
-        $forms->addInput(new Hidden($id,true, "album_id", "album_id"));
-        
-        $forms->addInput(new Submit("Supprimer", true, "album_id", ""));
+        $forms->addInput(new Hidden($id,true, "album_id", "album_id")); 
+        $forms->addInput(new Submit("Supprimer", true, "album_id", "", "confirmAction()"));
         
         return $forms;
+    }
+
+    public function getFormAddAdmin($id){
+        $forms = new Form("/?controller=ControlleurAlbumAjouter&action=submit", Form::POST, "musique_form");
+        $forms->setController("ControlleurAlbumAjouter", "submit");
+        $forms->addInput(new Hidden($id,true, "album_id", "album_id")); 
+        $forms->addInput(new Submit("Ajouter", true, "album_id", ""));
+        
+        return $forms; 
     }
 
    

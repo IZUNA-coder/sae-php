@@ -42,7 +42,7 @@ class ControlleurLogin extends Controlleur
         if($user){
             $this->redirect("ControlleurHome", "view");
         }else{
-            $_SESSION['error'] = "Nom d'utilisateur ou mot de passe incorrect";
+            $_SESSION['errorConnexion'] = "Nom d'utilisateur ou mot de passe incorrect";
             $this->redirect("ControlleurLogin", "view");
         }
     }

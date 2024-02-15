@@ -7,8 +7,10 @@
 </head>
 <body>
     <?php 
-    if(isset($_SESSION['error'])) {
-        echo $_SESSION['error'];
+    if(isset($_SESSION['errorAdd'])) {
+        echo $_SESSION['errorAdd'];
+    }else{
+        unset($_SESSION['errorAdd']);
     }
     echo $form ?? null; 
 ?>

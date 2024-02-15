@@ -27,7 +27,7 @@ class ControlleurAlbumAjouter extends Controlleur
 
     public function submit()
     {
-        $this->redirect("ControlleurHome", "view");
+        $this->redirect("ControlleurAlbumAjouter", "view");
     }
     
 

@@ -15,7 +15,17 @@
             console.log("Input field not found");
         }
     });
+    let test = document.querySelectorAll("test");
+    console.log(test.value);
 };
+
+function confirmAction() {
+    if(confirm("Voulez-vous vraiment supprimer cet album?")){
+        return true;
+    }else{
+        return false;
+    }
+}
 </script>
 
 </head>
@@ -41,6 +51,7 @@ if($_SESSION["id_role"] == 1){
 ?>
 
 <?php 
+
 if($albums ?? null && !empty($albums)){
     echo "<h2>Albums</h2>";
     echo "<table class='tab-groupes'>";
@@ -65,13 +76,15 @@ if($albums ?? null && !empty($albums)){
         echo '<td>';
         
             
-        $formDelete = $this->getFormDelete($album['idalbum']);
+        $formDelete = $this->getFormDeleteAdmin($album['idalbum']);
+        $formAdd = $this->getFormAddAdmin($album['idalbum']);
         echo $formDelete ?? null;    
         echo $formLinks ?? null;
+        echo $formAdd ?? null;
 
         echo '</td>';
         echo '</tr>';
-        
+       
     }
     echo "</tbody>";
     echo "</table>";

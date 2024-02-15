@@ -17,7 +17,7 @@ class ControlleurDelete extends Controlleur {
     private function getForm() {
         $form = new Form("/?controller=ControlleurDelete&action=submit", Form::POST, "delete_form");
         $form->setController("ControlleurDelete", "submit");
-        $form->addInput(new Submit("Supprimer", true, "supprimer", "supprimerId"));
+        $form->addInput(new Submit("Supprimer", true, "supprimer", "supprimerId", "confirmAction()"));
         return $form;
     }
 }
