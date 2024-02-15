@@ -113,7 +113,11 @@ if($albums ?? null && !empty($albums)){
         echo "<td> {$album['idalbum']}</td>";
         echo "<td>{$album['nom_album']}</td>";
         echo "<td>{$album['annee_album']}</td>";
+
+        
         echo "<td><img src=\"{$album['image_album']}\" width=\"100px\"></td>";
+  
+  
         echo '<td> Fonction à faire </td>';
         echo '<td>';
         

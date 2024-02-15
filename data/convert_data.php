@@ -1,12 +1,15 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
+use Symfony\Component\Yaml\Yaml;
+
+
 try{
 
-    //if (file_exists('sound.sqlite3')) {
-    //    unlink('sound.sqlite3');
-    //}
+    $cheminFichier = "data/extrait.yml";
+    $contenuFichier = Yaml::parseFile($cheminFichier);
     
-
     if (!file_exists('sound.sqlite3')) {
 
         $db = new PDO('sqlite:sound.sqlite3');
@@ -141,10 +144,6 @@ try{
      ('john_doe', 'Doe', 'John'),
      ('jane_smith', 'Smith', 'Jane')");
 
-// Insert into ALBUM table
-$db->exec("INSERT INTO ALBUM (nom_album, annee_album, image_album, idartiste) VALUES
-     ('Album1', '2022', './data/images/Terry_Allen_Pedal_Steal.jpg', 1),
-     ('Album2', '2023', './data/images/Terry_Allen_Pedal_Steal.jpg', 2)");
 
 // Insert into GENRE table
 $db->exec("INSERT INTO GENRE (nomgenre) VALUES
@@ -171,6 +170,52 @@ $db->exec("INSERT INTO CONTENIR_ALBUM (idalbum, idchanson) VALUES
 $db->exec("INSERT INTO PLAYLIST (id_playlist, nomplaylist, idutilisateur) VALUES
      (1, 'MyPlaylist', 1),
      (2, 'WorkoutSongs', 2)");
+
+foreach ($contenuFichier as $albumData) {
+    $artistName = $albumData['by'];
+    $albumTitle = $albumData['title'];
+    $releaseYear = $albumData['releaseYear'];
+    $genres = $albumData['genre'];
+
+
+    $img = $albumData['img'];
+
+    if($img == null){
+        $img = "./data/images/" . "default.jpg";
+    }
+    else{
+        $img = "./data/images/" . $albumData['img'];
+    }
+
+
+
+
+    $requeteArtiste = $db->query("SELECT * FROM ARTISTE WHERE pseudo_artiste = '$artistName'");
+    $artiste = $requeteArtiste-> fetch(PDO::FETCH_ASSOC);
+    if(!$artiste){
+        $db->exec("INSERT INTO ARTISTE (pseudo_artiste, nom_artiste, prenom_artiste) VALUES ('$artistName', '', '')");
+        $idArtiste = $db->lastInsertId();
+    }
+    else{
+        $idArtiste = $artiste['idartiste'];
+    }
+    $db->exec("INSERT INTO ALBUM (nom_album, annee_album, image_album, idartiste) 
+               VALUES ('$albumTitle', '$releaseYear', '$img', '$idArtiste')");
+    $idAlbum = $db->lastInsertId();
+
+    foreach($genres as $genre){
+        $requeteGenre = $db->query("SELECT * FROM GENRE WHERE nomgenre = '$genre'");
+        $presentGenre = $requeteGenre-> fetch(PDO::FETCH_ASSOC);
+        if(!$presentGenre){
+            $db->exec("INSERT INTO GENRE (nomgenre) VALUES ('$genre')");
+            $idGenre = $db->lastInsertId();
+        }
+        else{
+            $idGenre = $presentGenre['idgenre'];
+        }
+    }
+    $db->exec("INSERT INTO APPARTENIR_ALBUM (idalbum, idgenre) VALUES ('$idAlbum', '$idGenre')");
+}
 
 
 }}
