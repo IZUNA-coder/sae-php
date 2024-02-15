@@ -3,7 +3,9 @@ namespace Controlleur;
 
 use Auth\DBAlbum;
 use form\Form;
+use form\type\File;
 use form\type\Submit;
+use form\type\Text;
 
 class ControlleurAlbumAjouter extends Controlleur
 {
@@ -17,10 +19,6 @@ class ControlleurAlbumAjouter extends Controlleur
             $this->render("albumajouter.php", [ 
                 "formRetour" => $this->getFormRetour(),
                 "formAjouter" => $this->getFormAjouter(),
-                "nom_album" => $_SESSION['titre'] ?? "aucun album",
-                "anneeAlbum" => $_SESSION['annee_album'] ?? "aucune annee",
-                "imageAlbum" => $_SESSION['image_album'] ?? "aucune image",
-                "albumbyid" => $dbAlbum->getAlbumById($_GET['id']),
             ]);
         }
     }
@@ -42,8 +40,10 @@ class ControlleurAlbumAjouter extends Controlleur
     public function getFormAjouter()
     {
         $form = new Form("/?controller=ControlleurAlbumAjouter&action=submit", Form::POST, "album_form");
-        
         $form->setController("ControlleurAlbumAjouter", "submit");
+        $form->addInput(new Text("titre", "Titre", true, $_SESSION['titre'] ?? "", "", "Titre de l'album"));
+        $form->addInput(new Text("annee_album", "Annee", true, $_SESSION['annee_album'] ?? "", "", "Annee de l'album"));
+        $form->addInput(new File("image_album", "Image", true, "", "", "Image de l'album"));
         $form->addInput(new Submit("Ajouter", true, "", ""));
         return $form;
     }

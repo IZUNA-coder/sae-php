@@ -132,6 +132,7 @@ if($albums ?? null && !empty($albums)){
     echo "</tbody>";
     echo "</table>";
 }else{
+    
     echo "<h2>Albums</h2>";
     echo "<p>Il n'y a pas d'albums</p>";
 }
