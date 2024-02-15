@@ -6,6 +6,7 @@ use Auth\DBArtiste;
 use Auth\DBAuth;
 use form\Form;
 use form\type\Link;
+use form\type\Select;
 use form\type\Submit;   
 
 class ControlleurHome extends Controlleur
@@ -52,6 +53,7 @@ class ControlleurHome extends Controlleur
                     "artistes" => $artistes,
                     "albums" => $albums,
                     "formLinks" => $formLinks,
+                    "Select" => $this->getSelect(),
             ]);
         }
         }
@@ -104,4 +106,11 @@ class ControlleurHome extends Controlleur
         return $form;
     }
 
+    public function getSelect(){
+        $select = new Select('mySelect', 'mySelect');
+$select->setLabel('My Select');
+$select->addOption('option1', 'Option ');
+$select->addOption('option2', 'Option 2');
+        return $select;
+    }
 }

@@ -26,7 +26,8 @@ class ControlleurAlbum extends Controlleur
                 "imageAlbum" => $_SESSION['image_album'] ?? "aucune image",
                 "albums" => $albums,
                 "albums2" => $albums,
-
+                "formTest" => $this->getFormTest(),
+                "formModifier" => $this->getFormModifier(),
                 
             ]);
 
@@ -78,8 +79,20 @@ class ControlleurAlbum extends Controlleur
         return $forms; 
     }
 
+    public function getFormTest(){
+        $forms = new Form("/?controller=ControlleurAlbum&action=submit", Form::POST, "test");
+        $forms->setController("ControlleurAlbum", "submit");
+        $forms->addInput(new Hidden("",true, "test_id", "test_id")); 
+        $forms->addInput(new Submit("Supprimer", true, "test_id", "", "confirmAction()"));
+        
+    }
    
-
+    public function getFormModifier(){
+        $form = new Form("/?controller=ControlleurModifier&action=submit", Form::POST, "modifier_form");
+        $form->setController("ControlleurModifier", "submit");
+        $form->addInput(new Submit("Modifier", true, "modifier", "modifierId", "confirmAction()"));
+        return $form;
+    }
 
 
 

@@ -125,6 +125,12 @@ class DBAlbum{
         $stmt = $this->db->prepare('UPDATE ALBUM SET nom_album = ?, annee_album = ?, image_album = ?, idartiste = ? WHERE idalbum = ?', [$titre, $annee, $image, $idartiste, $id]);
         return $stmt !== false;
     }
+
+    public function updateAlbumTitre($id, $titre)
+    {
+        $stmt = $this->db->prepare('UPDATE ALBUM SET nom_album = ? WHERE idalbum = ?', [$titre, $id]);
+        return $stmt !== false;
+    }
     
     public function deleteAlbum($id)
     {

@@ -4,7 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albums</title>
+
+<style>
     
+:root{
+    --couleur1: #fff;
+    --couleur2:rgb(80,70,180);
+    --couleur3: rgb(181, 187, 199);
+    --couleur4: rgb(235, 236, 236);
+}
+
+*{
+    font-family: 'Londrina Solid', sans-serif;
+}
+
+
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th{
+    padding: 8px;
+    text-align: center;
+    height: 50px;
+}
+
+
+th{
+    background-color: var(--couleur4);
+}
+
+
+tr:hover {
+    background-color: var(--couleur4);
+}
+
+tbody tr{
+    border-bottom: 1px solid var(--couleur4);
+}
+    </style>
+
         <script defer>
    window.onload = function() {
     let inputFields = document.querySelectorAll("#album_id");
@@ -24,9 +65,10 @@ function confirmAction() {
         return true;
     }else{
         return false;
-    }
+    } 
 }
 </script>
+
 
 </head>
 <body>
@@ -81,6 +123,7 @@ if($albums ?? null && !empty($albums)){
         echo $formDelete ?? null;    
         echo $formLinks ?? null;
         echo $formAdd ?? null;
+        echo $formModifier ?? null;
 
         echo '</td>';
         echo '</tr>';
