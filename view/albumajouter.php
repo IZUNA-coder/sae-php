@@ -7,7 +7,7 @@
 </head>
 <body>
     
-
+<h1>dsdsd</h1>
 <?php
 if(isset($_FILES['image'])){
     $errors= array();
@@ -30,10 +30,21 @@ if(isset($_FILES['image'])){
         print_r($errors);
     }
 }
-$formAdd = $this->getFormAddAdmin($album['idalbum']);
-    echo $formAdd ?? null;
 
-?>
+$idartiste = $_GET['id'];
+$_SESSION['id_artiste_choisi'] = $idartiste;
+
+echo $formRetour;
+echo '<br>';
+echo $formAjouter;
+
+    if(isset($_SESSION["titre"])){
+    var_dump( $_SESSION["titre"],
+    $_SESSION["annee_album"],
+    $_SESSION["Image"])
+    ;}
+    
+?>  
 
 </body>
 </html>

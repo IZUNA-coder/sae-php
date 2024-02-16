@@ -18,6 +18,7 @@ class ControlleurAlbum extends Controlleur
             $this->redirect("ControlleurLogin", "view");
         }else{
             $albums = DBAlbum::getAlbums();
+            $artiste = DBArtiste::getArtistes();
 
             $this->render("album.php", [ 
                 "formRetour" => $this->getFormRetour(),
@@ -28,6 +29,7 @@ class ControlleurAlbum extends Controlleur
                 "albums2" => $albums,
                 "formTest" => $this->getFormTest(),
                 "formModifier" => $this->getFormModifier(),
+                "artiste" => $artiste,
                 
             ]);
 
@@ -39,6 +41,11 @@ class ControlleurAlbum extends Controlleur
         $this->redirect("ControlleurHome", "view");
     }
 
+    public function submitListeAlbum()
+    {
+        $this->redirect("ControlleurAlbum", "view");
+    }
+    
     public function getFormRetour()
     {
         $form = new Form("/?controller=ControlleurAlbum&action=submit", Form::GET, "album_form");
@@ -71,10 +78,11 @@ class ControlleurAlbum extends Controlleur
     }
 
     public function getFormAddAdmin($id){
-        $forms = new Form("/?controller=ControlleurAlbumAjouter&action=submit", Form::POST, "musique_form");
-        $forms->setController("ControlleurAlbumAjouter", "submit");
+        $forms = new Form("/?controller=ControlleurAlbum&action=submit", Form::GET, "musique_form");
+        $forms->setController("ControlleurAlbumArtiste", "submit");
         $forms->addInput(new Hidden($id,true, "album_id", "album_id")); 
         $forms->addInput(new Submit("Ajouter", true, "album_id", ""));
+        $_SESSION["idPage"] = $id+1;
         
         return $forms; 
     }

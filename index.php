@@ -5,6 +5,7 @@
 use Classes\Autoloader;
 use Controlleur\ControlleurAlbum;
 use Controlleur\ControlleurAlbumAjouter;
+use Controlleur\ControlleurAlbumArtiste;
 use Controlleur\ControlleurHome;
 use Controlleur\ControlleurLogin;
 use Controlleur\ControlleurModifier;
@@ -41,6 +42,9 @@ if(isset($_GET['controller']) && isset($_GET['action'])){
             break;
         case "ControlleurAlbumAjouter":
             $controller = new ControlleurAlbumAjouter($_REQUEST);
+            break;
+        case "ControlleurAlbumArtiste":
+            $controller = new ControlleurAlbumArtiste($_REQUEST);
             break;
         case "ControlleurModifier":
             $controller = new ControlleurModifier($_REQUEST);

@@ -109,6 +109,7 @@ if($albums ?? null && !empty($albums)){
     echo "</thead>";
     echo "<tbody>";
     foreach($albums as $album){ 
+
         echo '<tr>';
         echo "<td> {$album['idalbum']}</td>";
         echo "<td>{$album['nom_album']}</td>";
