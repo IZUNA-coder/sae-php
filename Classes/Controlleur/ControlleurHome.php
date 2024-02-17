@@ -20,6 +20,7 @@ class ControlleurHome extends Controlleur
             $albums = DBAlbum::getAlbums();
             $artistes = DBArtiste::getArtistes();
             $formLinks = [];
+        
 
             foreach($albums as $album) {
                 foreach($artistes as $artiste) {
@@ -54,6 +55,7 @@ class ControlleurHome extends Controlleur
                     "albums" => $albums,
                     "formLinks" => $formLinks,
                     "Select" => $this->getSelect(),
+                    "dbAlbum" => new DBAlbum(),
             ]);
         }
         }
