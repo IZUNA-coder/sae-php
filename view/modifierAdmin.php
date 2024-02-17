@@ -6,9 +6,12 @@
     <title>Modification</title>
 </head>
 <body>
-    <h1>pdsoidbspdoshibdnpkpio  </h1>
+    <h1> Modification album  </h1>
     <?php
     echo $form ?? null;
+    $_SESSION['idalbum'] = $_GET['id'];
+    
+
     ?>
 </body>
 </html>

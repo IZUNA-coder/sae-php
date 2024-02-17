@@ -14,7 +14,7 @@ function filtreRecherche() {
     filter = input.value.toUpperCase();
     albums = document.getElementsByTagName('div');
 
-    for (var i = 0; i < albums.length; i++) {
+    for (let i = 0; i < albums.length; i++) {
         if (filter === "" || albums[i].className.toUpperCase().startsWith(filter)) {
             albums[i].style.display = "";
         } else {
@@ -25,12 +25,12 @@ function filtreRecherche() {
 
 
 function filtreOption() {
-    var select, filter, albums, h4, txtValue;
+    let select, filter, albums, h4, txtValue;
     select = document.getElementById('genreSelect');
     filter = select.value.toLowerCase();
     albums = document.getElementsByTagName('div');
 
-    for (var i = 0; i < albums.length; i++) {
+    for (let i = 0; i < albums.length; i++) {
         h4 = albums[i].getElementsByTagName('h4')[0];
         if (h4) {
             txtValue = h4.innerText || h4.textContent;

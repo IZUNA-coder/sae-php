@@ -46,28 +46,6 @@ tbody tr{
 }
     </style>
 
-        <script defer>
-   window.onload = function() {
-    let inputFields = document.querySelectorAll("#album_id");
-    inputFields.forEach((inputField, index) => {
-        if(inputField){
-        console.log(`Input field ${index + 1}:`, inputField.value);
-        }else{
-            console.log("Input field not found");
-        }
-    });
-    let test = document.querySelectorAll("test");
-    console.log(test.value);
-};
-
-function confirmAction() {
-    if(confirm("Voulez-vous vraiment supprimer cet album?")){
-        return true;
-    }else{
-        return false;
-    } 
-}
-</script>
 
 
 </head>
@@ -93,6 +71,8 @@ if($_SESSION["id_role"] == 1){
 ?>
 
 <?php 
+$formAdd = $this->getFormAddAdmin(1);
+echo $formAdd ?? null;
 
 if($albums ?? null && !empty($albums)){
     echo "<h2>Albums</h2>";
@@ -114,21 +94,22 @@ if($albums ?? null && !empty($albums)){
         echo "<td> {$album['idalbum']}</td>";
         echo "<td>{$album['nom_album']}</td>";
         echo "<td>{$album['annee_album']}</td>";
+        
 
         
         echo "<td><img src=\"{$album['image_album']}\" width=\"100px\"></td>";
+        $genre = $dbAlbum->getGenreAlbum($album["idalbum"]);
+        echo "<td>{$genre[0]["nom_genre"] }</td>";
   
-  
-        echo '<td> Fonction à faire </td>';
         echo '<td>';
         
             
         $formDelete = $this->getFormDeleteAdmin($album['idalbum']);
         $formAdd = $this->getFormAddAdmin($album['idalbum']);
+        $formModifier = $this->getFormLink($album['idalbum']);
         echo $formDelete ?? null;    
-        echo $formLinks ?? null;
-        echo $formAdd ?? null;
-        echo $formModifier ?? null;
+        echo $formModifier;
+       
 
         echo '</td>';
         echo '</tr>';
@@ -137,10 +118,11 @@ if($albums ?? null && !empty($albums)){
     echo "</tbody>";
     echo "</table>";
 }else{
-    
+   
     echo "<h2>Albums</h2>";
     echo "<p>Il n'y a pas d'albums</p>";
 }
+
 ?>
 </body>
 </html>

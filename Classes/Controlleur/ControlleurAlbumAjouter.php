@@ -36,7 +36,7 @@ class ControlleurAlbumAjouter extends Controlleur
         $_SESSION["annee_album"]= $_POST['annee_album'];
         $_SESSION["Image"]= $_FILES['image']['tmp_name'];
         $dbAlbum->addAlbum($_POST['titre'], $_POST['annee_album'], $_SESSION['id_artiste_choisi'], $_POST['Image']);        
-        $this->redirect("ControlleurAlbumAjouter", "view", $_SESSION['id_artiste_choisi']);
+        $this->redirect("ControlleurAlbum", "view", $_SESSION['id_artiste_choisi']);
     }
 
     public function getFormRetour()

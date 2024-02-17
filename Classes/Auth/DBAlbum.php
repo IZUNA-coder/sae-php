@@ -120,9 +120,9 @@ class DBAlbum{
         return $stmt !== false;
     }
 
-    public function updateAlbum($id, $titre, $annee, $idartiste, $image)
+    public function updateAlbum($id, $titre, $annee, $image)
     {
-        $stmt = $this->db->prepare('UPDATE ALBUM SET nom_album = ?, annee_album = ?, image_album = ?, idartiste = ? WHERE idalbum = ?', [$titre, $annee, $image, $idartiste, $id]);
+        $stmt = $this->db->prepare('UPDATE ALBUM SET nom_album = ?, annee_album = ?, image_album = ? WHERE idalbum = ?', [$titre, $annee, $image, $id]);
         return $stmt !== false;
     }
 

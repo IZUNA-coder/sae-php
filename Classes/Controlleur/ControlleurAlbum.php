@@ -27,10 +27,8 @@ class ControlleurAlbum extends Controlleur
                 "imageAlbum" => $_SESSION['image_album'] ?? "aucune image",
                 "albums" => $albums,
                 "albums2" => $albums,
-                "formTest" => $this->getFormTest(),
-                "formModifier" => $this->getFormModifier(),
                 "artiste" => $artiste,
-                
+                "dbAlbum" => new DBAlbum(),
             ]);
 
         }
@@ -53,6 +51,8 @@ class ControlleurAlbum extends Controlleur
         $form->addInput(new Submit("Retour", true, "", ""));
         return $form;
     }
+
+    
 
     public function submitDelete()
 {
@@ -82,26 +82,23 @@ class ControlleurAlbum extends Controlleur
         $forms->setController("ControlleurAlbumArtiste", "submit");
         $forms->addInput(new Hidden($id,true, "album_id", "album_id")); 
         $forms->addInput(new Submit("Ajouter", true, "album_id", ""));
-        $_SESSION["idPage"] = $id+1;
+
         
         return $forms; 
     }
-
-    public function getFormTest(){
-        $forms = new Form("/?controller=ControlleurAlbum&action=submit", Form::POST, "test");
-        $forms->setController("ControlleurAlbum", "submit");
-        $forms->addInput(new Hidden("",true, "test_id", "test_id")); 
-        $forms->addInput(new Submit("Supprimer", true, "test_id", "", "confirmAction()"));
-        
-    }
    
     public function getFormModifier(){
-        $form = new Form("/?controller=ControlleurModifier&action=submit", Form::POST, "modifier_form");
+        $form = new Form("/?controller=ControlleurModifier&action=submit", Form::GET, "modifier_form");
         $form->setController("ControlleurModifier", "submit");
         $form->addInput(new Submit("Modifier", true, "modifier", "modifierId", "confirmAction()"));
         return $form;
     }
 
+    public function getFormLink($idalbum){
+        $form = new Form("/?controller=ControlleurAlbum&action=view", Form::GET, "modifier_form");
+        $form->addInput(new Link("/?controller=ControlleurModifier&action=view&id={$idalbum}", "Albums"));
+        return $form;
+    }
 
 
 }
