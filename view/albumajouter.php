@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='admin/groupe.css')}}">
     <meta charset="UTF-8">
     <title>Ajout Album</title>
 </head>
 <body>
     
-<h1>dsdsd</h1>
 <?php
+
+echo "<h1>Ajout d'un Album à : {$_SESSION['pseudo_artiste']}</h1>";
+
 if(isset($_FILES['image'])){
     $errors= array();
     $file_name = $_FILES['image']['name'];
@@ -43,7 +44,7 @@ echo $formAjouter;
     $_SESSION["annee_album"],
     $_SESSION["Image"])
     ;}
-    
+
 ?>  
 
 </body>

@@ -84,7 +84,7 @@ if($_SESSION["id_role"] == 2){
         echo "<h3> {$album['annee_album']}</h3>";
         echo "<img src='{$album['image_album']}' width='100px'>";
         echo "<br>";   
-        $genre = $dbAlbum->getGenreAlbum($album['idalbum']);
+        $genre = $dbAlbum->getGenreAlbumbyId($album['idalbum']);
         echo "<h4 id={$genre[0]["nom_genre"]}> Genre: {$genre[0]['nom_genre']}</h4>";
         foreach($artistes as $artiste){
             if ($artiste['idartiste'] == $album['idartiste']) {

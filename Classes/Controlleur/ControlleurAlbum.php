@@ -82,7 +82,7 @@ class ControlleurAlbum extends Controlleur
         $forms->setController("ControlleurAlbumArtiste", "submit");
         $forms->addInput(new Hidden($id,true, "album_id", "album_id")); 
         $forms->addInput(new Submit("Ajouter", true, "album_id", ""));
-
+        
         
         return $forms; 
     }

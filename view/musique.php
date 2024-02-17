@@ -4,18 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chanson</title>
-    <script defer>
-   window.onload = function() {
-    let inputFields = document.querySelectorAll("#album_id");
-    inputFields.forEach((inputField, index) => {
-        if(inputField){
-        console.log(`Input field ${index + 1}:`, inputField.value);
-        }else{
-            console.log("Input field not found");
-        }
-    });
-};
-</script>
 </head>
 <body>
     <H1>Musique de l'Album</H1>

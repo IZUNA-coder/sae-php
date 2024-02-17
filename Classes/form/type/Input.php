@@ -13,6 +13,7 @@ abstract class Input implements InputRender{
     protected string $name;
     protected string $id;
     private ?string $function = null;
+    protected string $RadioValue = "";
 
     public function __construct(
         string $value,
@@ -20,12 +21,15 @@ abstract class Input implements InputRender{
         string $name,
         string $id,
         string $function =null,
+        string $RadioValue = "",
     ){
         // peut poser problème si on a un espace
-        $this->value = str_replace(" ", "", $value);
+        //$this->value = str_replace(" ", "", $value);
+        $this->value = $value;
         $this->name = str_replace(" ", "", $name);
         $this->id = str_replace(" ", "", $id);
         $this->function = $function;
+        $this->RadioValue = $RadioValue;
     }
 
     public function __toString() {
@@ -37,15 +41,21 @@ abstract class Input implements InputRender{
         return $this;
     }
 
-    public function render(): string{
-        $required = $this->required ? "required=true" : "";
-        $value = $this->value === "" ? "" : "value=".$this->value;
-        $function = $this->function === null ? "" : "onclick=".$this->function;
-        $input =  "<input type=".$this->type." $required $value id=".$this->id." name=".$this->name." $function>";
+   
 
-        if($this->label !== ""){
-            return $this->label.$input;
+    public function render(): string{
+        $required = $this->required ? 'required="true"' : '';
+        $value = $this->value === "" ? '' : 'value="'.$this->value.'"';
+        $function = $this->function === null ? '' : 'onclick="'.$this->function.'"';
+        $label = $this->label !== "" ? $this->label : '';
+        
+        if($this->type === "radio"){
+            $input = '<input type="'.$this->type.'" '.$required.' '.$value.' id="'.$this->id.'" name="'.$this->name.'" '.$function.'>';
+            return $label . $input . $this->RadioValue;
         }
-        return $input;
+        
+        $input = '<input type="'.$this->type.'" '.$required.' '.$value.' id="'.$this->id.'" name="'.$this->name.'" '.$function.'>';
+        return $label . $input;
     }
+    
 }

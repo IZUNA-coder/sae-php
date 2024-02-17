@@ -30,7 +30,7 @@ class Database{
      * @return ?PDOStatement
      */
     public function query(string $query){
-        $requete = $this->db->query($query);
+        $requete = $this->getPDO()->query($query);
         $datas = $requete->fetchAll(PDO::FETCH_OBJ);
         return $datas;
     }

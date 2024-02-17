@@ -98,7 +98,7 @@ if($albums ?? null && !empty($albums)){
 
         
         echo "<td><img src=\"{$album['image_album']}\" width=\"100px\"></td>";
-        $genre = $dbAlbum->getGenreAlbum($album["idalbum"]);
+        $genre = $dbAlbum->getGenreAlbumbyId($album["idalbum"]);
         echo "<td>{$genre[0]["nom_genre"] }</td>";
   
         echo '<td>';
