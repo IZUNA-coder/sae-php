@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albums</title>
     <link rel="stylesheet" href="../static/css/albumAdmin.css">
+    <link rel="stylesheet" href="../static/css/banniere.css">
 
 </head>
 <body>
   
-
+<?php include 'banniere.php'; ?>
 <?php
 
 echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>"; 

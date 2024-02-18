@@ -1,19 +1,19 @@
 :root{
-    --couleur1: #fff;
-    --couleur2:rgb(80,70,180);
-    --couleur3: rgb(181, 187, 199);
-    --couleur4: rgb(235, 236, 236);
+    --couleur1: #191414; /* Spotify Black */
+    --couleur2: #1DB954; /* Spotify Green */
+    --couleur3: #B3B3B3;
+    --couleur4: #282828; 
 }
 
 *{
     font-family: 'Londrina Solid', sans-serif;
+    color: #FFFFFF; /* Spotify White */
 }
-
-
 
 table{
     border-collapse: collapse;
     width: 100%;
+    background-color: var(--couleur1);
 }
 
 td, th{
@@ -22,11 +22,9 @@ td, th{
     height: 50px;
 }
 
-
 th{
     background-color: var(--couleur4);
 }
-
 
 tr:hover {
     background-color: var(--couleur4);
@@ -43,11 +41,20 @@ tbody tr:last-child{
 a{
     text-decoration: none;
     color: var(--couleur2);
-    
-
 }
 
 a:hover{
     color: var(--couleur3);
 }
 
+body{
+    background-color: var(--couleur1);
+}
+
+input{
+    background-color: var(--couleur4);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+}
