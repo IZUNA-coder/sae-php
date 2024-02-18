@@ -11,7 +11,8 @@
     <?php
     echo $formRetour ?? null;
     echo $form ?? null;
-    $_SESSION['idartiste'] = $_GET['id'];
+    $_SESSION['idalbum'] = $_GET['id'];
+
     ?>
 </body>
 </html>
