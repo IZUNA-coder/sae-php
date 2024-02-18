@@ -1,10 +1,10 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once __DIR__  . '/../packages/vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
 
 try {
-    $cheminFichier = "fixtures/extrait.yml";
+    $cheminFichier = __DIR__ . "/extrait.yml";
     $contenuFichier = Yaml::parseFile($cheminFichier);
 
     $db = new PDO('sqlite:sound.sqlite3');
@@ -15,7 +15,7 @@ try {
         $albumTitle = $albumData['title'];
         $releaseYear = $albumData['releaseYear'];
         $genres = $albumData['genre'];
-        $img = ".fixtures/images" . $albumData['img'];
+        $img = "./data/images/" . $albumData['img'];
         $requeteArtiste = $db->query("SELECT * FROM ARTISTE WHERE pseudo_artiste = '$artistName'");
         $artiste = $requeteArtiste-> fetch(PDO::FETCH_ASSOC);
         if(!$artiste){
