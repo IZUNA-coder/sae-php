@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceuil</title>
+    <link rel="stylesheet" href="../static/css/accueilAdmin.css">
+    <link rel="stylesheet" href="../static/css/banniere.css">
+    <title>Accueil</title>
 </head>
 <body>
-   
-
+<?php include 'banniere.php'; ?>
 <?php 
 echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>";
 echo $formRetour ?? null; 

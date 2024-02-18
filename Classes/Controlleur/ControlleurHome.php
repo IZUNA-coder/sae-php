@@ -39,7 +39,7 @@ class ControlleurHome extends Controlleur
                     "mdp" => $_SESSION['mdp'],
                     "formRegister" => $this->getFormRegister(),
                     "formAdminAlbum" => $this->getFormAdminAlbum(),
-                    "formAdminArtiste" => $this->getFormAdminArtiste(), // ne marche pas
+                    "formAdminArtiste" => $this->getFormAdminArtiste(),
                 ]);
             }else{
                 $this->render("main.php", [

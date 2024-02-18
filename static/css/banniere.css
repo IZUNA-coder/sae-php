@@ -1,0 +1,20 @@
+header {
+    background-color: #121212; /* Couleur de fond Spotify */
+    color: white; /* Couleur du texte */
+    padding: 20px;
+    text-align: left;
+}
+
+header img {
+    height: 130px; /* Ajustez la taille de l'image selon vos besoins */
+}
+
+header .banner {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+header .banner h1 {
+    margin: 0;
+    font-size: 4em;
+}
