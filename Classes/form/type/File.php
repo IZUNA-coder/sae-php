@@ -8,9 +8,9 @@ class File extends Input{
 
     public function render(): string{
 
-        $required = $this->required ? "required=true" : "";
+        $required = $this->required ? "required=false" : "";
         $value = $this->value === "" ? "" : "value=".$this->value;
         
-        return "<input type=".$this->type." accept='image/*' $required $value id=".$this->id." name=".$this->name.">";
+        return "<input type=".$this->type." accept='image/*' $value id=".$this->id." name=".$this->name.">";
     }
 }

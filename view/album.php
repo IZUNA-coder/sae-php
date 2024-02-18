@@ -71,6 +71,7 @@ if($_SESSION["id_role"] == 1){
 ?>
 
 <?php 
+
 $formAdd = $this->getFormAddAdmin(1);
 echo $formAdd ?? null;
 
@@ -97,7 +98,14 @@ if($albums ?? null && !empty($albums)){
         
 
         
-        echo "<td><img src=\"{$album['image_album']}\" width=\"100px\"></td>";
+        if ($album['image_album'] == 1 || !preg_match('/^\.\/data\//', $album['image_album'])) {
+            echo "<td><img src=\"./data/images/default2.jpg\" width=\"100px\"></td>";
+        } else {
+            echo "<td><img src=\"{$album['image_album']}\" width=\"100px\"></td>";
+        }
+
+
+        
         $genre = $dbAlbum->getGenreAlbumbyId($album["idalbum"]);
         echo "<td>{$genre[0]["nom_genre"] }</td>";
   

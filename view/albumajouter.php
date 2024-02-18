@@ -1,51 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Ajout Album</title>
 </head>
+
 <body>
-    
-<?php
 
-echo "<h1>Ajout d'un Album à : {$_SESSION['pseudo_artiste']}</h1>";
 
-if(isset($_FILES['image'])){
-    $errors= array();
-    $file_name = $_FILES['image']['name'];
-    $file_size = $_FILES['image']['size'];
-    $file_tmp = $_FILES['image']['tmp_name'];
-    $file_type = $_FILES['image']['type'];
-    $file_ext = strtolower(end(explode('.',$_FILES['image']['name'])));
-      
-    $extensions= array("jpeg","jpg","png");
-      
-    if(in_array($file_ext,$extensions)=== false){
-        $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+
+
+    <?php
+
+
+
+    echo "<h1>Ajout d'un Album à : {$_SESSION['pseudo_artiste']}</h1>";
+
+
+    $idartiste = $_GET['id'];
+    $_SESSION['id_artiste_choisi'] = $idartiste;
+
+    echo $formRetour;
+    echo '<br>';
+    echo $formAjouter;
+
+
+
+    if (isset($_SESSION["titre"])) {
+        var_dump(
+            $_SESSION["titre"],
+            $_SESSION["annee_album"],
+            $_SESSION["Image"]
+        );
     }
-      
-    if(empty($errors)==true){
-        move_uploaded_file($file_tmp,"data/images/".$file_name);
-        echo "Success";
-    }else{
-        print_r($errors);
-    }
-}
 
-$idartiste = $_GET['id'];
-$_SESSION['id_artiste_choisi'] = $idartiste;
 
-echo $formRetour;
-echo '<br>';
-echo $formAjouter;
 
-    if(isset($_SESSION["titre"])){
-    var_dump( $_SESSION["titre"],
-    $_SESSION["annee_album"],
-    $_SESSION["Image"])
-    ;}
 
-?>  
+    ?>
 
 </body>
+
+<script>
+  
+        document.querySelector("#addAlbumForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        changerActionDuFormulaire();
+
+        console.log("submit intercepted");
+        
+        this.submit();
+
+        document.querySelector("#addAlbumForm").action = "/?controller=ControlleurAlbumAjouter&action=submitAdd";
+
+        console.log("submit de base ");
+
+        this.submit();
+    });
+
+      function changerActionDuFormulaire() {
+        var form = document.querySelector("#addAlbumForm");
+        form.action = "traitement.php"; 
+        console.log("changer action du formulaire");
+
+    }
+</script>
 </html>

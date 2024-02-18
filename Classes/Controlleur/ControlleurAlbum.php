@@ -98,7 +98,7 @@ public function getFormDeleteAdmin($id){
 
     public function getFormLink($idalbum){
         $form = new Form("/?controller=ControlleurAlbum&action=view", Form::GET, "modifier_form");
-        $form->addInput(new Link("/?controller=ControlleurModifier&action=view&id={$idalbum}", "Albums"));
+        $form->addInput(new Link("/?controller=ControlleurModifier&action=view&id={$idalbum}", "Modifier"));
         return $form;
     }
 
