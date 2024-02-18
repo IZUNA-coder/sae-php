@@ -6,10 +6,12 @@
     <title>Acceuil</title>
 <script src="../static/js/filtre.js" defer></script>
 
+
+    <link rel="stylesheet" href="../static/css/accueilAdmin.css">
+    <link rel="stylesheet" href="../static/css/banniere.css">
 </head>
-
-
-
+<body>
+<?php include 'banniere.php'; ?>
 <?php 
 echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>";
 echo $formRetour ?? null; 
