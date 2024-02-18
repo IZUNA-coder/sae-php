@@ -69,11 +69,18 @@ class ControlleurAlbumAjouter extends Controlleur
         $dbAlbum = new DBAlbum();
         $genre = $dbAlbum->getGenresAlbum();
 
-        $form = new FormData("/?controller=ControlleurAlbumAjouter&action=submitAdd", Form::POST, "addAlbumForm", 'validateForm', "onsubmit");
+        $form = new Form("/?controller=ControlleurAlbumAjouter&action=submitAdd", Form::POST, "addAlbumForm", 'validateForm', "onsubmit");
 
         $form->addInput((new Text("", true,"titre", "titre"))->setLabel("Titre Album"));
         $form->addInput((new Number("", true,"annee_album", "annee_album"))->setLabel("Annee Album"));
-        $form->addInput(new File("Image", true, "Image",'Image', "Image de l'album"));
+
+
+        $formimage = new FormData("traitement.php", Form::POST, "addimagealbum", 'validateForm', "onsubmit");
+
+        $formimage->addInput(new File("Image", true, "Image",'Image', "Image de l'album"));
+
+        $form->addForm($formimage);
+
         foreach($genre as $g){
             $form->addInput((new Checkbox($g["nom_genre"], false, "genre[]", "genre","", $g["nom_genre"])));
         }

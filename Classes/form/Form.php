@@ -46,6 +46,10 @@ class Form implements InputRender{
         $this->input[] = $input;
     }
 
+    public function addForm(Form $form): void{
+        $this->input[] = $form;
+    }
+
     /**
      * @return array
      */
@@ -102,6 +106,11 @@ class Form implements InputRender{
             }
 
             if($input instanceof Link){
+                $form .= $input;
+                continue;
+            }
+
+            if ($input instanceof FormData) {
                 $form .= $input;
                 continue;
             }

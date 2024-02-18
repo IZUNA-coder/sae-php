@@ -31,29 +31,5 @@
 
 </body>
 
-<script defer>
-//  
-//        document.querySelector("#addAlbumForm").addEventListener("submit", function(event) {
-//        event.preventDefault();
-//        
-//        changerActionDuFormulaire();
-//
-//        console.log("submit intercepted");
-//        
-//        this.submit();
-//
-//        document.querySelector("#addAlbumForm").action = "/?controller=ControlleurAlbumAjouter&action=submitAdd";
-//
-//        console.log("submit de base ");
-//
-//        this.submit();
-//    });
-//
-//      function changerActionDuFormulaire() {
-//        var form = document.querySelector("#addAlbumForm");
-//        form.action = "traitement.php"; 
-//        console.log("changer action du formulaire");
-//
-//    }
-</script>
+
 </html>

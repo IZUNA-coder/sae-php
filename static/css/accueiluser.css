@@ -1,0 +1,49 @@
+a {
+    color: #1DB954;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+    color: #b3b3b3;
+}
+
+form  input[type="submit"], form input[type="reset"] {
+    padding: 10px 20px;
+    border: none;
+    color: #fff;
+    background-color: #b91d1d;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+form input[type="submit"]:hover, form input[type="reset"]:hover {
+    background-color: #1DB954;
+}
+
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #333;
+    background-color: #333;
+    color: hsl(0, 0%, 100%);
+    border-radius: 5px;
+}
+
+.form {
+    background-color: #282828;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}

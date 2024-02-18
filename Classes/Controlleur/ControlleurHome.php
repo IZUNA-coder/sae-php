@@ -93,7 +93,7 @@ class ControlleurHome extends Controlleur
     public function getFormLink($idartiste){
         $form = new Form("/?controller=ControlleurHome&action=view", Form::GET, "home_form");
         $form->setController("ControlleurHome", "submit");
-        $form->addInput(new Link("/?controller=ControlleurMusique&action=view&id={$idartiste}", "Albums"));
+        $form->addInput(new Link("/?controller=ControlleurMusique&action=view&id={$idartiste}", "En voir plus"));
         return $form;
     }
 
