@@ -12,7 +12,7 @@ class ControlleurAlbumModifier extends Controlleur{
 
     public function view(){
         $dbAlbum = DBAlbum::getAlbums();
-        $this->render("modifierAdmin.php", ["form" => $this->getForm(), 
+        $this->render("modifierAdminAlbum.php", ["form" => $this->getForm(), 
         'dbAlbum' => $dbAlbum,
         "formRetour" => $this->getFormRetour(),
         ]);

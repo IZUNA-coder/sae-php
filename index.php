@@ -10,6 +10,7 @@ use Controlleur\ControlleurArtiste;
 use Controlleur\ControlleurHome;
 use Controlleur\ControlleurLogin;
 use Controlleur\ControlleurAlbumModifier;
+use Controlleur\ControlleurArtisteAjouter;
 use Controlleur\ControlleurArtisteModifier;
 use Controlleur\ControlleurMusique;
 use Controlleur\ControlleurRegister;
@@ -56,6 +57,9 @@ if(isset($_GET['controller']) && isset($_GET['action'])){
             break;
         case 'ControlleurArtisteModifier':
             $controller = new ControlleurArtisteModifier($_REQUEST);
+            break;
+        case "ControlleurArtisteAjouter":
+            $controller = new ControlleurArtisteAjouter($_REQUEST);
             break;
         default:
             $controller = null;

@@ -92,4 +92,17 @@ class DBArtiste{
         return $stmt ? true : false;
     }
 
+    
+    public function addArtiste($pseudo){
+       $stmt = $this->db->prepare("SELECT * FROM  ARTISTE WHERE pseudo_artiste = ?", [$pseudo]);
+       $result = $stmt->fetch(PDO::FETCH_ASSOC);    
+       if (!$result) {
+           $stmt = $this->db->prepare("INSERT INTO ARTISTE (pseudo_artiste) VALUES (?)", [$pseudo]);
+       }
+    
+    
+       return $stmt !== false;
+    }
+
+
 }

@@ -14,7 +14,7 @@ class ControlleurArtisteModifier extends Controlleur{
 
 
     public function view(){
-        $this->render("modifierAdmin.php", ["form" => $this->getForm(),
+        $this->render("modifierAdminArtiste.php", ["form" => $this->getForm(),
         "formRetour" => $this->getFormRetour(),
         ]);
     }    

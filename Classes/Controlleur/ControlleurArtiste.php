@@ -73,12 +73,12 @@ public function getFormDeleteAdmin($id){
 
     public function getFormAddAdmin($id){
         $forms = new Form("/?controller=ControlleurArtiste&action=submit", Form::GET, "musique_form");
-        $forms->setController("ControlleurArtisteArtiste", "submit");
-        $forms->addInput(new Hidden($id,true, "artiste_id", "artiste_id")); 
+        $forms->setController("ControlleurArtisteAjouter", "submit");
+        $forms->addInput(new Hidden($id,true, "artiste_id", "artiste_id"));
         $forms->addInput(new Submit("Ajouter", true, "artiste_id", ""));
-        
-        
-        return $forms; 
+       
+       
+        return $forms;
     }
    
     public function getFormModifier(){
