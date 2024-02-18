@@ -70,7 +70,16 @@ if($_SESSION["id_role"] == 2){
         echo "<img src='{$album['image_album']}' width='100px'>";
         echo "<br>";   
         $genre = $dbAlbum->getGenreAlbumbyId($album['idalbum']);
-        echo "<h4 id={$genre[0]["nom_genre"]}> Genre: {$genre[0]['nom_genre']}</h4>";
+        $genreString = '';
+
+        for ($i = 0; $i < count($genre); $i++) {
+            $genreString .= $genre[$i]['nom_genre'];
+            if ($i < count($genre) - 1) {
+                $genreString .= ', ';
+            }
+        }
+        echo "<h4 id={$genreString}> Genre: {$genreString}</h4>";
+        //echo "<h4 id={$genre[0]["nom_genre"]}> Genre: {$genre[0]['nom_genre']}</h4>";
         foreach($artistes as $artiste){
             if ($artiste['idartiste'] == $album['idartiste']) {
                 echo $formLinks[$album['idalbum']] ?? null;
