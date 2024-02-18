@@ -4,34 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artistes</title>
-    
-    <script defer>
-        window.onload = function() {
-            let inputFields = document.querySelectorAll("#artiste_id");
-            inputFields.forEach((inputField, index) => {
-                if(inputField){
-                    console.log(`Input field ${index + 1}:`, inputField.value);
-                }else{
-                    console.log("Input field not found");
-                }
-            });
-            let test = document.querySelectorAll("test");
-            console.log(test.value);
-        };
-
-        function confirmAction() {
-            if(confirm("Voulez-vous vraiment supprimer cet artiste?")){
-                return true;
-            }else{
-                return false;
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="../static/css/albumAdmin.css">
 
 </head>
 <body>
 
 <?php 
+
+$formAdd = $this->getFormAddAdmin(1);
+echo $formRetour ?? null;
+echo $formAdd ?? null;
 
 if($artistes ?? null && !empty($artistes)){
     echo "<h2>Artistes</h2>";
@@ -39,8 +21,7 @@ if($artistes ?? null && !empty($artistes)){
     echo "<thead>";
     echo "<tr>";
     echo "<th>Id</th>";
-    echo "<th>Nom</th>";
-    echo "<th>Image</th>";
+    echo "<th>Pseudo Artiste</th>";
     echo "<th>Modification</th>";
     echo "</tr>";
     echo "</thead>";
@@ -48,14 +29,15 @@ if($artistes ?? null && !empty($artistes)){
     foreach($artistes as $artiste){ 
         echo '<tr>';
         echo "<td> {$artiste['idartiste']}</td>";
-        echo "<td>{$artiste['nom_artiste']}</td>";
+        echo "<td>{$artiste['pseudo_artiste']}</td>";
         echo '<td>';
         
         $formDelete = $this->getFormDeleteAdmin($artiste['idartiste']);
-        $formAdd = $this->getFormAddAdmin($artiste['idartiste']);
+        $formModifier = $this->getFormLink($artiste['idartiste']);
+
         echo $formDelete ?? null;    
         echo $formLinks ?? null;
-        echo $formAdd ?? null;
+        echo $formModifier ?? null; 
 
         echo '</td>';
         echo '</tr>';

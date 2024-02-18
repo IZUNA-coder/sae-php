@@ -79,4 +79,17 @@ class DBArtiste{
         return false;
     }
 
+    public function deleteArtiste($id)
+    {
+        $stmt = $this->db->prepare('DELETE FROM ARTISTE WHERE idartiste = ?', [$id]);
+        return $stmt ? true : false;
+    }
+
+    public function updateArtiste($id, $pseudo)
+    {
+        $stmt = $this->db->prepare('UPDATE ARTISTE SET pseudo_artiste = ? WHERE idartiste = ?', [$pseudo, $id]);
+
+        return $stmt ? true : false;
+    }
+
 }

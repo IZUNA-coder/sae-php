@@ -90,15 +90,15 @@ public function getFormDeleteAdmin($id){
     }
    
     public function getFormModifier(){
-        $form = new Form("/?controller=ControlleurModifier&action=submit", Form::GET, "modifier_form");
-        $form->setController("ControlleurModifier", "submit");
+        $form = new Form("/?controller=ControlleurAlbumModifier&action=submit", Form::GET, "modifier_form");
+        $form->setController("ControlleurAlbumModifier", "submit");
         $form->addInput(new Submit("Modifier", true, "modifier", "modifierId", "confirmAction()"));
         return $form;
     }
 
     public function getFormLink($idalbum){
         $form = new Form("/?controller=ControlleurAlbum&action=view", Form::GET, "modifier_form");
-        $form->addInput(new Link("/?controller=ControlleurModifier&action=view&id={$idalbum}", "Modifier"));
+        $form->addInput(new Link("/?controller=ControlleurAlbumModifier&action=view&id={$idalbum}", "Modifier"));
         return $form;
     }
 

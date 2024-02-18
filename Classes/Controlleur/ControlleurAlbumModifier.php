@@ -8,7 +8,7 @@ use form\type\Checkbox;
 use form\type\Submit;
 use form\type\Text;
 
-class ControlleurModifier extends Controlleur{
+class ControlleurAlbumModifier extends Controlleur{
 
     public function view(){
         $dbAlbum = DBAlbum::getAlbums();
@@ -26,7 +26,7 @@ class ControlleurModifier extends Controlleur{
     }
  
     private function getForm(){
-        $form = new Form("/?controller=ControlleurModifier&action=submit", Form::POST, "login_form", 'validateForm', "onsubmit");
+        $form = new Form("/?controller=ControlleurAlbumModifier&action=submit", Form::POST, "login_form", 'validateForm', "onsubmit");
         $dbAlbum = DBAlbum::getAlbums();
         $dbGenre = new DBAlbum();
 
@@ -50,7 +50,7 @@ class ControlleurModifier extends Controlleur{
 
         $_SESSION['genreSelectionne'] = $genreArray;
         $form->addInput(new Submit("Modifier", true, "", ""));
-        $form->setController("ControlleurModifier", "submit");
+        $form->setController("ControlleurAlbumModifier", "submit");
         return $form;
     }
         
