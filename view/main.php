@@ -9,15 +9,17 @@
 
     <link rel="stylesheet" href="../static/css/accueilAdmin.css">
     <link rel="stylesheet" href="../static/css/banniere.css">
+    <link rel="stylesheet" href="../static/css/accueiluser.css">
 </head>
 <body>
 <?php include 'banniere.php'; ?>
 <?php 
 echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>";
 echo $formRetour ?? null; 
+echo $formRecherche ?? null;
+
 echo $selectGenre ?? null;
 echo $selectAnnee ?? null;
-echo $formRecherche ?? null;
 
 if($_SESSION["id_role"] == 1){
     echo "<section>";
@@ -49,7 +51,6 @@ if($_SESSION["id_role"] == 2){
             }
         }
         echo "<h4 id={$genreString}> Genre: {$genreString}</h4>";
-        //echo "<h4 id={$genre[0]["nom_genre"]}> Genre: {$genre[0]['nom_genre']}</h4>";
         foreach($artistes as $artiste){
             if ($artiste['idartiste'] == $album['idartiste']) {
                 echo $formLinks[$album['idalbum']] ?? null;

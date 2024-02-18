@@ -42,3 +42,12 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
     background-color: #189443;
 }
+
+a {
+    color: #1DB954;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

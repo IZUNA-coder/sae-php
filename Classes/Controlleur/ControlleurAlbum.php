@@ -27,7 +27,7 @@ class ControlleurAlbum extends Controlleur
                 "imageAlbum" => $_SESSION['image_album'] ?? "aucune image",
                 "albums" => $albums,
                 "albums2" => $albums,
-                "artiste" => $artiste,
+                "artiste" => $artiste ?? "aucun artiste",
                 "dbAlbum" => new DBAlbum(),
             ]);
 
