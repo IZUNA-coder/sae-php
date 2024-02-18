@@ -7,7 +7,8 @@ use Auth\DBAuth;
 use form\Form;
 use form\type\Link;
 use form\type\Select;
-use form\type\Submit;   
+use form\type\Submit;
+use form\type\Text;
 
 class ControlleurHome extends Controlleur
 {
@@ -56,6 +57,7 @@ class ControlleurHome extends Controlleur
                     "formLinks" => $formLinks,
                     "Select" => $this->getSelect(),
                     "dbAlbum" => new DBAlbum(),
+                    "formRecherche" => $this->getFormRecherche(),
             ]);
         }
         }
@@ -109,10 +111,19 @@ class ControlleurHome extends Controlleur
     }
 
     public function getSelect(){
-        $select = new Select('mySelect', 'mySelect');
-$select->setLabel('My Select');
-$select->addOption('option1', 'Option ');
-$select->addOption('option2', 'Option 2');
+        $select = new Select('genreSelect', true, "test", "genreSelect", "filtrages()","", "onchange");
+        $select->addOption('', 'Tous les genres');
+        $dbAlbum = new DBAlbum();
+        $genres = $dbAlbum->getGenresAlbum();
+        foreach($genres as $genre){
+            $select->addOption($genre['nom_genre'], $genre['nom_genre']);
+        }   
         return $select;
+    }
+
+    public function getFormRecherche(){
+        $form = new Form("/?controller=ControlleurHome&action=view", "", "home_form");
+        $form->addInput(new Text("", true, "recherche", "recherche", "filtrages()", "", "onkeyup"));
+        return $form;
     }
 }

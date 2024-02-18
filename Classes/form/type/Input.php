@@ -7,13 +7,14 @@ use form\InputRender;
 abstract class Input implements InputRender{
 
     protected string $type;
-    private string $label = "";
+    protected string $label = "";
 
     protected string $value;
     protected string $name;
     protected string $id;
-    private ?string $function = null;
+    protected ?string $function = null;
     protected string $RadioValue = "";
+    protected ?string $event = null;
 
     public function __construct(
         string $value,
@@ -22,14 +23,16 @@ abstract class Input implements InputRender{
         string $id,
         string $function =null,
         string $RadioValue = "",
+        string $event = null,
     ){
         // peut poser problème si on a un espace
-        //$this->value = str_replace(" ", "", $value);
+        
         $this->value = $value;
         $this->name = str_replace(" ", "", $name);
         $this->id = str_replace(" ", "", $id);
         $this->function = $function;
         $this->RadioValue = $RadioValue;
+        $this->event = $event;
     }
 
     public function __toString() {
@@ -41,12 +44,15 @@ abstract class Input implements InputRender{
         return $this;
     }
 
-   
+    private function getFonctionString(): string {
+        return $this->function === null ? '' : $this->event . '="' . $this->function . '"';
+    }
 
     public function render(): string{
         $required = $this->required ? 'required="true"' : '';
         $value = $this->value === "" ? '' : 'value="'.$this->value.'"';
-        $function = $this->function === null ? '' : 'onclick="'.$this->function.'"';
+        $function = $this->getFonctionString();
+
         $label = $this->label !== "" ? $this->label : '';
         
         if($this->type === "radio"){
