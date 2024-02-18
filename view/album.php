@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albums</title>
     <link rel="stylesheet" href="../static/css/albumAdmin.css">
+    <link rel="stylesheet" href="../static/css/accueiluser.css">
 
 </head>
 <body>
