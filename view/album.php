@@ -13,7 +13,6 @@
 <?php include 'banniere.php'; ?>
 <?php
 
-echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>"; 
 echo $formRetour ?? null; 
 
 if($_SESSION["id_role"] == 1){
