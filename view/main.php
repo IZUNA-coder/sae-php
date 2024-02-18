@@ -56,8 +56,9 @@ if($_SESSION["id_role"] == 2){
         foreach($artistes as $artiste){
             
             if ($artiste['idartiste'] == $album['idartiste']) {
-                echo $formLinks[$album['idalbum']] ?? null;
                 echo "<h5> {$artiste['pseudo_artiste']}</h5>";
+                echo $formLinks[$album['idalbum']] ?? null;
+
                 $_SESSION["idPage{$artiste['idartiste']}"] = $artiste['idartiste'];
                 echo "</div>";
                 break;  
