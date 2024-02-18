@@ -7,11 +7,9 @@ use form\Form;
 use form\FormData;
 use form\type\Checkbox;
 use form\type\File;
-use form\type\Hidden;
-use form\type\RadioButton;
+use form\type\Number;
 use form\type\Submit;
 use form\type\Text;
-use form\type\Number;
 
 class ControlleurAlbumAjouter extends Controlleur
 {
@@ -76,6 +74,7 @@ class ControlleurAlbumAjouter extends Controlleur
 
 
         $formimage = new FormData("traitement.php", Form::POST, "addimagealbum", 'validateForm', "onsubmit");
+       
 
         $formimage->addInput(new File("Image", true, "Image",'Image', "Image de l'album"));
 

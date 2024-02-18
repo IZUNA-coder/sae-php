@@ -20,6 +20,7 @@ echo $formRecherche ?? null;
 
 echo $selectGenre ?? null;
 echo $selectAnnee ?? null;
+echo $selectArtiste ?? null;
 
 if($_SESSION["id_role"] == 1){
     echo "<section>";
@@ -51,16 +52,19 @@ if($_SESSION["id_role"] == 2){
             }
         }
         echo "<h4 id={$genreString}> Genre: {$genreString}</h4>";
+        
         foreach($artistes as $artiste){
+            
             if ($artiste['idartiste'] == $album['idartiste']) {
                 echo $formLinks[$album['idalbum']] ?? null;
-                echo "<h4> {$artiste['prenom_artiste']} {$artiste['nom_artiste']}</h4>";
+                echo "<h5> {$artiste['pseudo_artiste']}</h5>";
                 $_SESSION["idPage{$artiste['idartiste']}"] = $artiste['idartiste'];
                 echo "</div>";
                 break;  
             }
         } 
     }
+    var_dump($artistes);
 }
 
 ?>

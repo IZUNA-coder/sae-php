@@ -59,6 +59,7 @@ class ControlleurHome extends Controlleur
                     "dbAlbum" => new DBAlbum(),
                     "formRecherche" => $this->getFormRecherche(),
                     "selectAnnee" => $this->getSelectAnnee(),
+                    "selectArtiste" => $this->getSelectArtiste(),
             ]);
         }
         }
@@ -129,6 +130,17 @@ class ControlleurHome extends Controlleur
         $annees = $dbAlbum->getAnneesAlbum();
         foreach($annees as $annee){
             $select->addOption($annee['annee_album'], $annee['annee_album']);
+        }   
+        return $select;
+    }
+
+    public function getSelectArtiste(){
+        $select = new Select('artisteSelect', true, "", "artisteSelect", "filtrages()","", "onchange");
+        $select->addOption('', 'Tous les artistes');
+        $dbArtiste = new DBArtiste();
+        $artistes = $dbArtiste->getArtistes();
+        foreach($artistes as $artiste){
+            $select->addOption($artiste['pseudo_artiste'], $artiste['pseudo_artiste']);
         }   
         return $select;
     }

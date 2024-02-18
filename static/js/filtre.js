@@ -1,12 +1,14 @@
 function filtrages() {
-    let input, selectGenre, selectAnnee, filterText, filterOptionGenre, filterOptionAnnee, albums, h4, txtValue, h3, txtValueAnnee;
+    let input, selectGenre, selectAnnee, selectArtiste, filterText, filterOptionGenre, filterOptionAnnee,filterOptionArtiste, albums, h4, txtValue, h3, txtValueAnnee;
     input = document.getElementById('recherche');
     selectGenre = document.getElementById('genreSelect');
     selectAnnee = document.getElementById('anneeSelect');
+    selectArtiste = document.getElementById('artisteSelect');
 
     filterText = input.value.toUpperCase();
     filterOptionGenre = selectGenre.value.toLowerCase();
     filterOptionAnnee = selectAnnee.value;
+    
 
     albums = document.querySelectorAll('body > div');
 
@@ -23,7 +25,7 @@ function filtrages() {
 
         if ((filterText === "" || albums[i].className.toUpperCase().startsWith(filterText)) &&
             (filterOptionGenre === "" || (h4 && txtValue.includes(filterOptionGenre))) &&
-            (filterOptionAnnee === "" || (h3 && txtValueAnnee === filterOptionAnnee))) {
+            (filterOptionAnnee === "" || (h3 && Number(txtValueAnnee) === Number(filterOptionAnnee)))) {
             albums[i].style.display = "";
         } else {
             albums[i].style.display = "none";
