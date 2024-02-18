@@ -26,18 +26,6 @@
     echo $formAjouter;
 
 
-
-    if (isset($_SESSION["titre"])) {
-        var_dump(
-            $_SESSION["titre"],
-            $_SESSION["annee_album"],
-            $_SESSION["Image"]
-        );
-    }
-
-
-
-
     ?>
 
 </body>

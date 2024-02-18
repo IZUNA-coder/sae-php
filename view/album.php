@@ -10,7 +10,7 @@
 <body>
   
 
-<?php 
+<?php
 
 echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>"; 
 echo $formRetour ?? null; 
@@ -29,6 +29,8 @@ if($_SESSION["id_role"] == 1){
 ?>
 
 <?php 
+
+
 
 $formAdd = $this->getFormAddAdmin(1);
 echo $formAdd ?? null;
@@ -62,12 +64,10 @@ if($albums ?? null && !empty($albums)){
             echo "<td><img src=\"{$album['image_album']}\" width=\"100px\"></td>";
         }
 
-
         
         $genre = $dbAlbum->getGenreAlbumbyId($album["idalbum"]);
 
             $genreString = '';
-
             for ($i = 0; $i < count($genre); $i++) {
                 $genreString .= $genre[$i]['nom_genre'];
                 if ($i < count($genre) - 1) {

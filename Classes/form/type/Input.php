@@ -13,7 +13,7 @@ abstract class Input implements InputRender{
     protected string $name;
     protected string $id;
     protected ?string $function = null;
-    protected string $RadioValue = "";
+    protected string $inputValue = "";
     protected ?string $event = null;
 
     public function __construct(
@@ -22,7 +22,7 @@ abstract class Input implements InputRender{
         string $name,
         string $id,
         string $function =null,
-        string $RadioValue = "",
+        string $inputValue = "",
         string $event = null,
     ){
         // peut poser problème si on a un espace
@@ -31,7 +31,7 @@ abstract class Input implements InputRender{
         $this->name = str_replace(" ", "", $name);
         $this->id = str_replace(" ", "", $id);
         $this->function = $function;
-        $this->RadioValue = $RadioValue;
+        $this->inputValue = $inputValue;
         $this->event = $event;
     }
 
@@ -55,9 +55,9 @@ abstract class Input implements InputRender{
 
         $label = $this->label !== "" ? $this->label : '';
         
-        if($this->type === "radio"){
+        if($this->type === "radio" || $this->type === "checkbox"){
             $input = '<input type="'.$this->type.'" '.$required.' '.$value.' id="'.$this->id.'" name="'.$this->name.'" '.$function.'>';
-            return $label . $input . $this->RadioValue;
+            return $label . $input . $this->inputValue;
         }
         
         $input = '<input type="'.$this->type.'" '.$required.' '.$value.' id="'.$this->id.'" name="'.$this->name.'" '.$function.'>';

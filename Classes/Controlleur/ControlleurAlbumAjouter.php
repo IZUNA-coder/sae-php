@@ -5,6 +5,7 @@ use Auth\DBAlbum;
 use Auth\DBArtiste;
 use form\Form;
 use form\FormData;
+use form\type\Checkbox;
 use form\type\File;
 use form\type\Hidden;
 use form\type\RadioButton;
@@ -39,15 +40,19 @@ class ControlleurAlbumAjouter extends Controlleur
     public function submitAdd(){
         $dbAlbum = new DBAlbum();
         $albums = DBAlbum::getAlbums();
-        $idalbum = end($albums)["idalbum"]+1;
         $_SESSION["titre"]= $_POST['titre'];
         $_SESSION["annee_album"]= $_POST['annee_album'];
         $_SESSION["Image"]= $_FILES['image']['tmp_name'];
         
-        $dbAlbum->addAlbum($_POST['titre'], $_POST['annee_album'], $_SESSION['id_artiste_choisi'], $_POST['Image']);  
-        $idGenre = $dbAlbum->getGenreId($_POST['genre']);
-        $dbAlbum->addGenreAlbum($idalbum, $idGenre);
+        $dbAlbum->addAlbum($_POST['titre'], $_POST['annee_album'], $_SESSION['id_artiste_choisi'], $_POST['Image']); 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['genre'])) {
+            $idalbum = end($albums)["idalbum"]+1;
 
+            foreach ($_POST['genre'] as $nomGenre) {
+                $idGenre = $dbAlbum->getGenreId($nomGenre);
+                $dbAlbum->addGenreAlbum($idalbum, $idGenre);
+            }
+        } 
         $this->redirect("ControlleurAlbum", "view", $_SESSION['id_artiste_choisi']);
     }
 
@@ -70,7 +75,7 @@ class ControlleurAlbumAjouter extends Controlleur
         $form->addInput((new Number("", true,"annee_album", "annee_album"))->setLabel("Annee Album"));
         $form->addInput(new File("Image", true, "Image",'Image', "Image de l'album"));
         foreach($genre as $g){
-            $form->addInput((new RadioButton($g["nom_genre"], true, "genre", "genre","", $g["nom_genre"])));
+            $form->addInput((new Checkbox($g["nom_genre"], false, "genre[]", "genre","", $g["nom_genre"])));
         }
         $form->addInput(new Submit("Ajouter", true, "", ""));    
 

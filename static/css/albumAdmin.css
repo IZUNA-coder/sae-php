@@ -35,3 +35,19 @@ tr:hover {
 tbody tr{
     border-bottom: 1px solid var(--couleur4);
 }
+
+tbody tr:last-child{
+    border-bottom: none;
+}
+
+a{
+    text-decoration: none;
+    color: var(--couleur2);
+    
+
+}
+
+a:hover{
+    color: var(--couleur3);
+}
+
