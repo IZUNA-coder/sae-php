@@ -114,11 +114,17 @@ class DBAlbum{
     }
 
 
+
     public function addAlbum($titre, $annee, $idartiste, $image)
     {
+        if (!preg_match('/^\.\/data\//', $image)) {
+            $image = 'data/images/default.jpg';
+        }
+
         $stmt = $this->db->prepare('INSERT INTO ALBUM (nom_album, annee_album, image_album, idartiste) VALUES (?, ?, ?, ?)', [$titre, $annee, $image, $idartiste]);
         return $stmt !== false;
     }
+
 
     public function updateAlbum($id, $titre, $annee, $image)
     {
