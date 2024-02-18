@@ -26,7 +26,7 @@ class ControlleurHome extends Controlleur
             foreach($albums as $album) {
                 foreach($artistes as $artiste) {
                     if ($artiste['idartiste'] == $album['idartiste']) {
-                        $formLinks[$album['idartiste']] = $this->getFormLink($artiste['idartiste']);
+                        $formLinks[$album['idalbum']] = $this->getFormLink($album['idalbum']);
                         break;
                     }
                 }

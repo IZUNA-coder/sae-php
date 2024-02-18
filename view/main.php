@@ -66,12 +66,10 @@ if($_SESSION["id_role"] == 2){
         echo "<h4 id={$genre[0]["nom_genre"]}> Genre: {$genre[0]['nom_genre']}</h4>";
         foreach($artistes as $artiste){
             if ($artiste['idartiste'] == $album['idartiste']) {
-                var_dump($album['idalbum']);
-                echo $formLinks[$artiste['idartiste']] ?? null;
+                echo $formLinks[$album['idalbum']] ?? null;
                 echo "<h4> {$artiste['prenom_artiste']} {$artiste['nom_artiste']}</h4>";
                 $_SESSION["idPage{$artiste['idartiste']}"] = $artiste['idartiste'];
                 echo "</div>";
-
                 break;  
             }
         } 
