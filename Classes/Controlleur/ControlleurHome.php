@@ -135,7 +135,7 @@ class ControlleurHome extends Controlleur
 
     public function getFormRecherche(){
         $form = new Form("/?controller=ControlleurHome&action=view", "", "home_form");
-        $form->addInput(new Text("", true, "recherche", "recherche", "filtrages()", "", "onkeyup"));
+        $form->addInput(new Text("", true, "recherche", "recherche", "filtrages()", "", "oninput"));
         return $form;
     }
 }
