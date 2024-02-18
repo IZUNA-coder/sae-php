@@ -6,6 +6,8 @@
     <title>Artistes</title>
     <link rel="stylesheet" href="../static/css/albumAdmin.css">
     <link rel="stylesheet" href="../static/css/banniere.css">
+    <link rel="stylesheet" href="../static/css/accueiluser.css">
+
 
 </head>
 <body>

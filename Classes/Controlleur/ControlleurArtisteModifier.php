@@ -1,20 +1,24 @@
 <?php
 
+
 namespace Controlleur;
+
 
 use Auth\DBArtiste;
 use form\Form;
 use form\type\Submit;
 use form\type\Text;
 
+
 class ControlleurArtisteModifier extends Controlleur{
 
+
     public function view(){
-        $this->render("modifierAdmin.php", ["form" => $this->getForm(), 
+        $this->render("modifierAdmin.php", ["form" => $this->getForm(),
         "formRetour" => $this->getFormRetour(),
         ]);
-    }     
-    
+    }    
+   
     public function submit(){
         $db = new DBArtiste();
         $db->updateArtiste($_SESSION['idartiste'],$_POST['nom_artiste']);
@@ -29,13 +33,13 @@ class ControlleurArtisteModifier extends Controlleur{
                 $form->addInput((new Text($artiste['pseudo_artiste'], true,"nom_artiste", "artiste_id"))->setLabel("Nom Artiste "));
             }
         }
-        
+       
         $form->addInput(new Submit("Modifier", true, "", ""));
         $form->setController("ControlleurArtisteModifier", "submit");
         return $form;
     }
-        
-    
+       
+   
     public function getFormRetour()
     {
         $form = new Form("/?controller=ControlleurArtiste&action=submit", Form::GET, "Artiste_form");
@@ -43,5 +47,6 @@ class ControlleurArtisteModifier extends Controlleur{
         $form->addInput(new Submit("Retour", true, "", ""));
         return $form;
     }
+
 
 }

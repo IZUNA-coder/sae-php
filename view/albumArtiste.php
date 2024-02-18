@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../static/css/banniere.css">
     <link rel="stylesheet" href="../static/css/albumAdmin.css">
     <title>Artiste a choisir</title>
+    
 </head>
 <body>
     <?php include 'banniere.php'; ?>

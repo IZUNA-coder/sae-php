@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../static/css/albumAdmin.css">
     <title>Modification</title>
     <script src="../static/js/validation.js" defer></script>
+
+
 </head>
 <body>
     <?php include 'banniere.php'; ?>
