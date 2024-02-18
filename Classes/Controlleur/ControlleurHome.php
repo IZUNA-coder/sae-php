@@ -55,9 +55,10 @@ class ControlleurHome extends Controlleur
                     "artistes" => $artistes,
                     "albums" => $albums,
                     "formLinks" => $formLinks,
-                    "Select" => $this->getSelect(),
+                    "selectGenre" => $this->getSelectGenre(),
                     "dbAlbum" => new DBAlbum(),
                     "formRecherche" => $this->getFormRecherche(),
+                    "selectAnnee" => $this->getSelectAnnee(),
             ]);
         }
         }
@@ -110,13 +111,24 @@ class ControlleurHome extends Controlleur
         return $form;
     }
 
-    public function getSelect(){
-        $select = new Select('genreSelect', true, "test", "genreSelect", "filtrages()","", "onchange");
+    public function getSelectGenre(){
+        $select = new Select('genreSelect', true, "", "genreSelect", "filtrages()","", "onchange");
         $select->addOption('', 'Tous les genres');
         $dbAlbum = new DBAlbum();
         $genres = $dbAlbum->getGenresAlbum();
         foreach($genres as $genre){
             $select->addOption($genre['nom_genre'], $genre['nom_genre']);
+        }   
+        return $select;
+    }
+
+    public function getSelectAnnee(){
+        $select = new Select('anneeSelect', true, "", "anneeSelect", "filtrages()","", "onchange");
+        $select->addOption('', 'Toutes les années');
+        $dbAlbum = new DBAlbum();
+        $annees = $dbAlbum->getAnneesAlbum();
+        foreach($annees as $annee){
+            $select->addOption($annee['annee_album'], $annee['annee_album']);
         }   
         return $select;
     }

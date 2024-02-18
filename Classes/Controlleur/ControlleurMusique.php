@@ -23,7 +23,7 @@ class ControlleurMusique extends Controlleur
             $te = new DBPlaylist();
             
             $this->render("musique.php", [
-                //"formRetour" => $this->getFormRetour(),
+                "formRetour" => $this->getFormRetour(),
                 "chansonsbyid" => $chanson->getchansonInAlbum($_GET['id']), 
                 "chansons" => $chanson->getChanson(), 
                 "artistes" => $artiste->getArtistes(),
@@ -64,7 +64,7 @@ class ControlleurMusique extends Controlleur
     }
 
     
-    public function getFormAjout($id){ // ne veut pas mettre la méthode dans la page musique.php
+    public function getFormAjout($id){
         $forms = new Form("/?controller=ControlleurMusique&action=submitAjout", Form::POST, "musique_form");
         $forms->setController("ControlleurMusique", "");
         $forms->addInput(new Hidden($id,true, "album_id", "album_id"));

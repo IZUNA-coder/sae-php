@@ -99,15 +99,9 @@ class DBAlbum{
                     'titre' => $album->nom_album,
                     'annee_album' => $album->annee_album,
                     'image_album' => $album->image_album,
-
                 );
             }
-            if(isset($_SESSION['albums'])){
-                $_SESSION['albums'] = array_merge($_SESSION['albums'], $albumsArray);
-            }
-            else{
-                $_SESSION['albums'] = $albumsArray;
-            }
+            $_SESSION['albums'] = $albumsArray;
             return $albumsArray;
         }
         return false;
@@ -141,6 +135,7 @@ class DBAlbum{
     public function deleteAlbum($id)
     {
         $stmt = $this->db->prepare('DELETE FROM ALBUM WHERE idalbum = ?', [$id]);
+        $stmt = $this->db->prepare('DELETE FROM APPARTENIR_ALBUM WHERE idalbum = ?', [$id]);
         return $stmt !== false;
     }
     
@@ -195,5 +190,19 @@ class DBAlbum{
         return $genre ? $genre->idgenre : false;
     }
     
+    public function getAnneesAlbum(){
+        $annees = $this->db->query('SELECT DISTINCT annee_album FROM ALBUM'); 
+        if($annees){
+            $anneesArray = array();
+            foreach($annees as $annee){
+                $anneesArray[] = array(
+                    'annee_album' => $annee->annee_album,
+                );
+            }
+            $_SESSION['annees'] = $anneesArray;
+            return $anneesArray;
+        }
+        return false;
+    }
 
 }

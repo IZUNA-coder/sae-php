@@ -8,6 +8,7 @@
 <body>
     <h1> Modification album  </h1>
     <?php
+    echo $formRetour ?? null;
     echo $form ?? null;
     $_SESSION['idalbum'] = $_GET['id'];
     

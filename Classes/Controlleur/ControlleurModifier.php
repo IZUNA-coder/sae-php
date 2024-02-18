@@ -10,8 +10,16 @@ use form\type\Text;
 class ControlleurModifier extends Controlleur{
     public function view(){
         $dbAlbum = DBAlbum::getAlbums();
-        $this->render("modifierAdmin.php", ["form" => $this->getForm(), 'dbAlbum' => $dbAlbum]);
-    }
+        $this->render("modifierAdmin.php", ["form" => $this->getForm(), 
+        'dbAlbum' => $dbAlbum,
+        "formRetour" => $this->getFormRetour(),
+        ]);
+        
+        }
+    
+
+        
+    
     
     public function submit(){
         $db = new DBAlbum();
@@ -34,4 +42,13 @@ class ControlleurModifier extends Controlleur{
         $form->setController("ControlleurModifier", "submit");
         return $form;
     }
+
+    public function getFormRetour()
+    {
+        $form = new Form("/?controller=ControlleurAlbumAjouter&action=submit", Form::GET, "album_form");
+        $form->setController("ControlleurAlbum", "submitListeAlbum");
+        $form->addInput(new Submit("Retour", true, "", ""));
+        return $form;
+    }
+
 }
