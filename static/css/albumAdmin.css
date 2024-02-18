@@ -24,12 +24,12 @@ td, th{
 
 
 th{
-    background-color: var(--couleur4);
+    background-color: var(--couleur2);
 }
 
 
 tr:hover {
-    background-color: var(--couleur4);
+    background-color: var(--couleur2);
 }
 
 tbody tr{
@@ -45,9 +45,5 @@ a{
     color: var(--couleur2);
     
 
-}
-
-a:hover{
-    color: var(--couleur3);
 }
 

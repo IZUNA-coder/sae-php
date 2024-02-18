@@ -11,10 +11,10 @@
     <?php
     echo $formRetour ?? null;
     echo "<section>";
-    echo "<p><strong>Date de Sortie:</strong> " . $albumbyid->annee_album . "<p>";
     echo "<img src=".$albumbyid->image_album." alt='image album'>";
-    echo "<h2>Album</h2>";
     echo "<h3>".$albumbyid->nom_album."</h3>";  
+    echo "<p><strong>Date de Sortie:</strong> " . $albumbyid->annee_album . "<p>";
+
     echo "</section>";
     
     echo "<br>";
@@ -22,13 +22,18 @@
     echo "<br>";
 
     $_SESSION["idPage"] = $albumbyid->idalbum;
+    echo "<h4>Chanter par : ";
+
     foreach($artistes as $artiste){
         if ($artiste['idartiste'] == $albumbyid->idartiste) {
-            echo "<h4>Artiste: {$artiste['prenom_artiste']} {$artiste['nom_artiste']}</h4>";
+                echo $artiste['pseudo_artiste'] ;
             break;  
         }
     }
+    echo "</h4>";
     echo "<div style='font-family: Arial, sans-serif;'>";
+
+    if ($chansonsbyid ?? null && !empty($chansonsbyid)) {
 foreach($chansonsbyid as $chansonbyid) {        
     foreach($chansons as $chanson) {
         if ($chanson['idchanson'] == $chansonbyid->idchanson) {
@@ -52,6 +57,7 @@ foreach($chansonsbyid as $chansonbyid) {
             break;
         }
     }
+}
 }
 echo "</div>";
 ?>
