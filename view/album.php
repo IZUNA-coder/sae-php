@@ -107,7 +107,17 @@ if($albums ?? null && !empty($albums)){
 
         
         $genre = $dbAlbum->getGenreAlbumbyId($album["idalbum"]);
-        echo "<td>{$genre[0]["nom_genre"] }</td>";
+
+            $genreString = '';
+
+            for ($i = 0; $i < count($genre); $i++) {
+                $genreString .= $genre[$i]['nom_genre'];
+                if ($i < count($genre) - 1) {
+                    $genreString .= ', ';
+                }
+            }
+
+            echo "<td>{$genreString}</td>";
   
         echo '<td>';
         

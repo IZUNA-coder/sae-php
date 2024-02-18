@@ -10,6 +10,7 @@ use form\type\Hidden;
 use form\type\RadioButton;
 use form\type\Submit;
 use form\type\Text;
+use form\type\Number;
 
 class ControlleurAlbumAjouter extends Controlleur
 {
@@ -66,7 +67,7 @@ class ControlleurAlbumAjouter extends Controlleur
         $form = new FormData("/?controller=ControlleurAlbumAjouter&action=submitAdd", Form::POST, "addAlbumForm");
 
         $form->addInput((new Text("", true,"titre", "titre"))->setLabel("Titre Album"));
-        $form->addInput((new Text("", true,"annee_album", "annee_album"))->setLabel("Annee Album"));
+        $form->addInput((new Number("", true,"annee_album", "annee_album"))->setLabel("Annee Album"));
         $form->addInput(new File("Image", true, "Image",'Image', "Image de l'album"));
         foreach($genre as $g){
             $form->addInput((new RadioButton($g["nom_genre"], true, "genre", "genre","", $g["nom_genre"])));
