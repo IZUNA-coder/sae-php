@@ -89,32 +89,25 @@ if($albums ?? null && !empty($albums)){
     echo "</thead>";
     echo "<tbody>";
     foreach($albums as $album){ 
-
         echo '<tr>';
         echo "<td> {$album['idalbum']}</td>";
         echo "<td>{$album['nom_album']}</td>";
         echo "<td>{$album['annee_album']}</td>";
-        
-
-        
         echo "<td><img src=\"{$album['image_album']}\" width=\"100px\"></td>";
-        $genre = $dbAlbum->getGenreAlbumbyId($album["idalbum"]);
-        echo "<td>{$genre[0]["nom_genre"] }</td>";
-  
+        echo '<td> Fonction à faire </td>';
         echo '<td>';
         
-            
+        
         $formDelete = $this->getFormDeleteAdmin($album['idalbum']);
         $formAdd = $this->getFormAddAdmin($album['idalbum']);
-        $formModifier = $this->getFormLink($album['idalbum']);
-        echo $formDelete ?? null;    
-        echo $formModifier;
-       
-
+        echo $formDelete ?? null; 
+        echo $formLinks ?? null;
+        echo $formAdd ?? null;
+        echo $formModifier ?? null;
         echo '</td>';
         echo '</tr>';
        
-    }
+       }
     echo "</tbody>";
     echo "</table>";
 }else{

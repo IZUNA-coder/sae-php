@@ -55,27 +55,29 @@ class ControlleurAlbum extends Controlleur
     
 
     public function submitDelete()
-{
-
-    if (isset($_POST['album_id'])) {
-        $id = $_POST['album_id'];
-        $album = new DBAlbum();
-        $album->deleteAlbum($id); 
-        $_SESSION["idAlbumSupprimer"] = $id;
-        $this->redirect("ControlleurAlbum", "view");
-    } else {
-        echo "No album_id in POST data";
+    {
+    
+     if (isset($_POST['album_id'])) {
+      $id = $_POST['album_id'];
+      $album = new DBAlbum();
+      $album->deleteAlbum($id); 
+      $_SESSION["idAlbumSupprimer"] = $id;
+      $this->redirect("ControlleurAlbum", "view");
+     } else {
+      echo "No album_id in POST data";
+     }
     }
-}
 
-    public function getFormDeleteAdmin($id){ 
-        $forms = new Form("/?controller=ControlleurAlbum&action=submitDelete", Form::POST, "musique_form");
-        $forms->setController("ControlleurAlbum", "submitDelete");
-        $forms->addInput(new Hidden($id,true, "album_id", "album_id")); 
-        $forms->addInput(new Submit("Supprimer", true, "album_id", "", "confirmAction()"));
-        
-        return $forms;
+public function getFormDeleteAdmin($id){ 
+    $forms = new Form("/?controller=ControlleurAlbum&action=submitDelete", Form::POST, "musique_form");
+    $forms->setController("ControlleurAlbum", "submitDelete");
+    $forms->addInput(new Hidden($id,true, "album_id", "album_id")); 
+    $forms->addInput(new Submit("Supprimer", true, "", "", ""));
+    
+    return $forms;
     }
+
+    
 
     public function getFormAddAdmin($id){
         $forms = new Form("/?controller=ControlleurAlbum&action=submit", Form::GET, "musique_form");
