@@ -120,10 +120,25 @@ class DBAlbum{
     }
 
 
-    public function updateAlbum($id, $titre, $annee, $image)
+    public function updateAlbum($idalbum, $titre, $annee, $nomGenres = null)
     {
-        $stmt = $this->db->prepare('UPDATE ALBUM SET nom_album = ?, annee_album = ?, image_album = ? WHERE idalbum = ?', [$titre, $annee, $image, $id]);
-        return $stmt !== false;
+        $albumUpdated = $this->db->prepare('UPDATE ALBUM SET nom_album = ?, annee_album = ? WHERE idalbum = ?', [$titre, $annee, $idalbum]);
+    
+        $deleteStmt = $this->db->prepare('DELETE FROM APPARTENIR_ALBUM WHERE idalbum = ?' , [$idalbum]);
+    
+        if ($nomGenres !== null && is_array($nomGenres)) {
+            foreach ($nomGenres as $nomGenre) {
+                $idGenre = $this->getGenreId($nomGenre);
+                $stmt = $this->db->prepare('SELECT * FROM APPARTENIR_ALBUM WHERE idalbum = ? AND idgenre = ?',[$idalbum, $idGenre]);
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                if (!$result) {
+                    $insertStmt = $this->db->prepare('INSERT INTO APPARTENIR_ALBUM (idalbum, idgenre) VALUES (?, ?)', [$idalbum, $idGenre]);
+                }
+            }
+        }
+    
+        return $albumUpdated;
     }
 
     public function updateAlbumTitre($id, $titre)
@@ -181,6 +196,12 @@ class DBAlbum{
         }
     
         return $stmt !== false;
+    }
+
+    public function getGenreAlbum($idalbum, $idgenre){
+        $stmt = $this->db->prepare('SELECT * FROM APPARTENIR_ALBUM WHERE idalbum = ? AND idgenre = ?', [$idalbum, $idgenre]);
+        $genre = $stmt->fetch(PDO::FETCH_OBJ);
+        return $genre ? $genre->idgenre : false;
     }
     
 

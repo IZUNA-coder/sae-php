@@ -69,7 +69,7 @@ class ControlleurAlbumAjouter extends Controlleur
         $dbAlbum = new DBAlbum();
         $genre = $dbAlbum->getGenresAlbum();
 
-        $form = new FormData("/?controller=ControlleurAlbumAjouter&action=submitAdd", Form::POST, "addAlbumForm");
+        $form = new FormData("/?controller=ControlleurAlbumAjouter&action=submitAdd", Form::POST, "addAlbumForm", 'validateForm', "onsubmit");
 
         $form->addInput((new Text("", true,"titre", "titre"))->setLabel("Titre Album"));
         $form->addInput((new Number("", true,"annee_album", "annee_album"))->setLabel("Annee Album"));

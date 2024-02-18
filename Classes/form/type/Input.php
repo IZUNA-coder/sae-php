@@ -15,6 +15,7 @@ abstract class Input implements InputRender{
     protected ?string $function = null;
     protected string $inputValue = "";
     protected ?string $event = null;
+    protected bool $checked = false;
 
     public function __construct(
         string $value,
@@ -24,6 +25,7 @@ abstract class Input implements InputRender{
         string $function =null,
         string $inputValue = "",
         string $event = null,
+        bool $checked = false
     ){
         // peut poser problème si on a un espace
         
@@ -33,6 +35,7 @@ abstract class Input implements InputRender{
         $this->function = $function;
         $this->inputValue = $inputValue;
         $this->event = $event;
+        $this->checked = $checked;
     }
 
     public function __toString() {
@@ -44,23 +47,28 @@ abstract class Input implements InputRender{
         return $this;
     }
 
-    private function getFonctionString(): string {
+    private function getFonction(): string {
         return $this->function === null ? '' : $this->event . '="' . $this->function . '"';
     }
 
     public function render(): string{
         $required = $this->required ? 'required="true"' : '';
         $value = $this->value === "" ? '' : 'value="'.$this->value.'"';
-        $function = $this->getFonctionString();
-
+        $function = $this->getFonction();
+        $checked = $this->checked ? 'checked' : '';
+    
         $label = $this->label !== "" ? $this->label : '';
         
+        $input = '<input type="'.$this->type.'" '.$required.' '.$value.' id="'.$this->id.'" name="'.$this->name.'" '.$function.' '.$checked.'>';
+    
         if($this->type === "radio" || $this->type === "checkbox"){
-            $input = '<input type="'.$this->type.'" '.$required.' '.$value.' id="'.$this->id.'" name="'.$this->name.'" '.$function.'>';
             return $label . $input . $this->inputValue;
         }
-        
-        $input = '<input type="'.$this->type.'" '.$required.' '.$value.' id="'.$this->id.'" name="'.$this->name.'" '.$function.'>';
+    
+        if($this->type === "hidden"){
+            return $input;
+        }
+    
         return $label . $input;
     }
     

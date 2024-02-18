@@ -29,6 +29,8 @@ class Form implements InputRender{
         protected string $action,
         protected string $method,
         private string $id,
+        protected ?string $function = null,
+        protected ?string $event = null,
     
         
     ){
@@ -75,13 +77,21 @@ class Form implements InputRender{
     }
 
 
+    protected function getFonction(): string {
+        if ($this->function !== null && $this->event !== null) {
+            return " {$this->event}='return {$this->function}()'";
+        }
+
+        return "";
+    }
     /**
      * @return string
      */
     public function render(): string{
-        $form = "<form class='form' action='".$this->action."' method='".$this->method."' id='".$this->id."'>";
+        $function = $this->getFonction();
+        $form = "<form class='form' action='".$this->action."' method='".$this->method."' id='".$this->id."'".$function.">";
         foreach($this->input as $input){
-            // affiche les submits à la fin du formulaire
+           
             if($input instanceof Submit){
                 continue;
             }
@@ -106,5 +116,5 @@ class Form implements InputRender{
         }
         $form .= "</form>";
         return $form;
-    } 
+    }  
 }
