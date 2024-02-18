@@ -15,8 +15,10 @@ class Form implements InputRender{
     public const PUT = "PUT";
     public const DELETE = "DELETE";
 
+
     /** @var Input[] */
-    private array $input = [];
+    protected array $input = [];
+
 
     /**
      * @param string $action
@@ -26,7 +28,9 @@ class Form implements InputRender{
     public function __construct(
         protected string $action,
         protected string $method,
-        private string $id
+        private string $id,
+    
+        
     ){
         // ajoute au formulaire son identifiant
         $this->addInput(new Hidden($this->id, true, "form_id", "form_id"));
@@ -62,11 +66,20 @@ class Form implements InputRender{
         return $this->render();
     }
 
+    public function getId(): string{
+        return $this->id;
+    }
+
+    public function setId(string $id): void{
+        $this->id = $id;
+    }
+
+
     /**
      * @return string
      */
     public function render(): string{
-        $form = "<form class='form' action=".$this->action." method=".$this->method.">";
+        $form = "<form class='form' action='".$this->action."' method='".$this->method."' id='".$this->id."'>";
         foreach($this->input as $input){
             // affiche les submits à la fin du formulaire
             if($input instanceof Submit){

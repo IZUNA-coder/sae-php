@@ -8,6 +8,9 @@
 
 <body>
 
+
+
+
     <?php
 
 
@@ -33,23 +36,35 @@
     }
 
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nom_fichier = $_FILES['image']['name'];
-            $fichier_tmp = $_FILES['image']['tmp_name'];
-
-            $dossier_cible = "data/images/";
-            $fichier_cible = $dossier_cible . basename($nom_fichier);
-
-            if (move_uploaded_file($fichier_tmp, $fichier_cible)) {
-                echo "Le fichier " . basename($nom_fichier) . " a été copié.";
-            } else {
-                echo "Désolé, une erreur s'est produite lors de la copie de votre fichier.";
-            }
-        }
 
 
     ?>
 
 </body>
 
+<script>
+  
+        document.querySelector("#addAlbumForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        changerActionDuFormulaire();
+
+        console.log("submit intercepted");
+        
+        this.submit();
+
+        document.querySelector("#addAlbumForm").action = "/?controller=ControlleurAlbumAjouter&action=submitAdd";
+
+        console.log("submit de base ");
+
+        this.submit();
+    });
+
+      function changerActionDuFormulaire() {
+        var form = document.querySelector("#addAlbumForm");
+        form.action = "traitement.php"; 
+        console.log("changer action du formulaire");
+
+    }
+</script>
 </html>
