@@ -41,7 +41,6 @@ foreach($chansonsbyid as $chansonbyid) {
         if ($chanson['idchanson'] == $chansonbyid->idchanson) {
             echo "<p><strong>Nom Chanson:</strong> " . $chanson['nom_chanson'] . "</p>";
             echo "<p><strong>Duree Chanson:</strong> " . $chanson['duree_chanson'] . "</p>";
-            echo "<p><strong>Genre Chanson:</strong> " . $chanson['genre_chanson'] . "</p>";
             
             $_SESSION['id_chanson'] = $chanson['idchanson'];
             echo '<br>';
