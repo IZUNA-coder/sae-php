@@ -60,6 +60,7 @@ class ControlleurHome extends Controlleur
                     "formRecherche" => $this->getFormRecherche(),
                     "selectAnnee" => $this->getSelectAnnee(),
                     "selectArtiste" => $this->getSelectArtiste(),
+                    "formPlaylist" => $this->getFormPlaylist(),
             ]);
         }
         }
@@ -148,6 +149,13 @@ class ControlleurHome extends Controlleur
     public function getFormRecherche(){
         $form = new Form("/?controller=ControlleurHome&action=view", "", "home_form");
         $form->addInput(new Text("", true, "recherche", "recherche", "filtrages()", "", "oninput"));
+        return $form;
+    }
+
+    public function getFormPlaylist(){
+        $form = new Form("/?controller=ControlleurPlaylist&action=view", Form::GET, "playlist_form");
+        $form->setController("ControlleurPlaylist", "submit");
+        $form->addInput(new Submit("Playlist", true, "", ""));
         return $form;
     }
 }

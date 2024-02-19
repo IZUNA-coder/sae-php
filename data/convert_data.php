@@ -145,6 +145,34 @@ try {
      (1, 'MyPlaylist', 1),
      (2, 'WorkoutSongs', 2)");
 
+       
+        // Insert into Chanson table
+        $db->exec("INSERT INTO CHANSON (idchanson, nom_chanson, duree_chanson) VALUES
+        (1,'Whitey''s Theme', '6:00'),
+        (2,'My Prayer', '4:00'),
+        (3,'Señorita', '3:00'),
+        (4,'I''m a Believer', '2:00'),
+        (5,'DURE CETTE SAE', '2:00'),
+        (6,'CHAUD MONSIEUR', '2:00')");
+        
+
+        // Insert into ChANTER table
+        $db->exec("INSERT INTO CHANTER (idchanson, idartiste) VALUES
+        (1, 1),
+        (2, 1),
+        (3, 1),
+        (4, 1),
+        (5, 1),
+        (6, 1)");
+
+        // Insert into CONTENIR_ALBUM table
+        $db->exec("INSERT INTO CONTENIR_ALBUM (idalbum, idchanson) VALUES
+        (1, 1),
+        (1, 2),
+        (1, 3),
+        (2, 4),
+        (2, 5),
+        (3, 6)");
         foreach ($contenuFichier as $albumData) {
             $artistName = $albumData['by'];
             $albumTitle = $albumData['title'];

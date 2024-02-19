@@ -17,10 +17,12 @@
 echo "<h1>Bienvenue {$_SESSION["prenom"]} </h1>";
 echo $formRetour ?? null; 
 echo $formRecherche ?? null;
+echo $formPlaylist ?? null;
 
 echo $selectGenre ?? null;
 echo $selectAnnee ?? null;
 echo $selectArtiste ?? null;
+
 
 if($_SESSION["id_role"] == 1){
     echo "<section>";

@@ -4,6 +4,7 @@ namespace Auth;
 
 use data\Database;
 use PDO;
+use PDOException;
 
 class DBPlaylist{
     private $db;
@@ -115,14 +116,30 @@ class DBPlaylist{
         return $stmt !== false;
     }
 
-    public function getIdChansonInPlaylist($id)
+    public function getIdChansonInPlaylist($idplaylist)
     {
-        $stmt = $this->db->prepare('SELECT * FROM CONTENIR WHERE id_playlist = ?', [$id]);
+        $stmt = $this->db->prepare('SELECT * FROM CONTENIR WHERE id_playlist = ?', [$idplaylist]);
         $chansons = $stmt->fetchAll(PDO::FETCH_OBJ);
         if($chansons){
             return $chansons;
         }
         return false;
+    }
+
+    function getPlaylistSongs( $playlistId) {
+        $songs = [];
+        try {
+            $query = $this->db->prepare("SELECT CHANSON.* FROM CHANSON 
+                                   JOIN CONTENIR ON CHANSON.idchanson = CONTENIR.idchanson 
+                                   WHERE CONTENIR.id_playlist = ?",[$playlistId]);
+    
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $songs[] = $row;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage() . PHP_EOL;
+        }
+        return $songs;
     }
 
 
