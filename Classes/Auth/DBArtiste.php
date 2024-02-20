@@ -82,6 +82,7 @@ class DBArtiste{
     public function deleteArtiste($id)
     {
         $stmt = $this->db->prepare('DELETE FROM ARTISTE WHERE idartiste = ?', [$id]);
+        $stmt = $this->db->prepare('DELETE FROM ALBUM WHERE idartiste = ?', [$id]);
         return $stmt ? true : false;
     }
 
@@ -99,10 +100,9 @@ class DBArtiste{
        if (!$result) {
            $stmt = $this->db->prepare("INSERT INTO ARTISTE (pseudo_artiste) VALUES (?)", [$pseudo]);
        }
-    
-    
        return $stmt !== false;
     }
+    
 
 
 }

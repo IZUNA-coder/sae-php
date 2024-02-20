@@ -17,10 +17,12 @@ class ControlleurArtiste extends Controlleur
             $this->redirect("ControlleurLogin", "view");
         }else{
             $artistes = DBArtiste::getArtistes();
+            $albums = DBAlbum::getAlbums();
 
             $this->render("artiste.php", [ 
                 "formRetour" => $this->getFormRetour(),
                 "artistes" => $artistes,
+                "albums" => $albums,
             ]);
 
         }
